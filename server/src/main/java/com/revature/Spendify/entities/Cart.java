@@ -21,7 +21,7 @@ public class Cart {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToMany(mappedBy = "cartList")
+    @OneToMany(mappedBy = "cart")
     List<CartLookup> cartLookUpList;
 
     public Cart() {

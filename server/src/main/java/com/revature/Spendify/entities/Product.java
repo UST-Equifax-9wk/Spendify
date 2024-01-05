@@ -49,7 +49,7 @@ public class Product {
     @JsonManagedReference
     private Account account;
 
-    @ManyToMany(mappedBy = "productList")
+    @OneToMany(mappedBy = "product")
     @JsonManagedReference
     private List<CartLookup> cartLookupList;
     public Product() {

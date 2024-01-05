@@ -16,14 +16,14 @@ public class CartLookup {
     @Column(columnDefinition = "INTEGER DEFAULT 1")
     private int quantity;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "products",
             joinColumns = @JoinColumn(name = "product_id"))
     @JsonBackReference
     private Product product;
 
     // Not sure about this relationship with cart
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "carts",
             joinColumns = @JoinColumn(name = "cart_id"))
     @JsonBackReference
