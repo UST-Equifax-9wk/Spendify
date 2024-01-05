@@ -1,5 +1,6 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -8,31 +9,56 @@ import java.util.List;
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column
+    @Column(name="user_id")
     private int userId;
 
-    @Column
-    private String first_name;
+    @Column(name="first_name",nullable = false)
+    private String firstName;
 
-    @Column
-    private String last_name;
+    @Column(name="last_name",nullable = false)
+    private String lastName;
 
-    @Column
+    @Column(nullable = false)
     private String address;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
 
     @OneToOne(mappedBy = "user")
+    @JsonManagedReference
     private Review review;
 
     @OneToOne
     @JoinColumn(name = "account_id")
+    @JsonManagedReference
     private Account account;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<Card> cardList;
+    public User() {
+    }
 
+    public User(String firstName, String lastName, String address, String email, Review review, Account account, List<Card> cardList) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+        this.review = review;
+        this.account = account;
+        this.cardList = cardList;
+    }
+
+    public User(int userId, String firstName, String lastName, String address, String email, Review review, Account account, List<Card> cardList) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+        this.review = review;
+        this.account = account;
+        this.cardList = cardList;
+    }
     public int getUserId() {
         return userId;
     }
@@ -41,20 +67,20 @@ public class User {
         this.userId = userId;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAddress() {

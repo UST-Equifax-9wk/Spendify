@@ -24,6 +24,24 @@ public class Cart {
     @ManyToMany(mappedBy = "cartList")
     List<CartLookup> cartLookUpList;
 
+    public Cart() {
+    }
+
+    public Cart(boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.isActive = isActive;
+        this.order = order;
+        this.account = account;
+        this.cartLookUpList = cartLookUpList;
+    }
+
+    public Cart(int cartId, boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.cartId = cartId;
+        this.isActive = isActive;
+        this.order = order;
+        this.account = account;
+        this.cartLookUpList = cartLookUpList;
+    }
+
     public int getCartId() {
         return cartId;
     }
