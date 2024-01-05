@@ -1,14 +1,20 @@
 package com.revature.Spendify.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
-@Entity(name = "distributers")
-public class Distributer {
+@Entity(name = "distributors")
+public class Distributor {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "distributer_id")
-    private int distributerId;
+    @Column(name = "distributor_id")
+    private int distributorId;
 
     @Column
     private String name;
@@ -20,12 +26,12 @@ public class Distributer {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    public int getDistributerId() {
-        return distributerId;
+    public int getDistributorId() {
+        return distributorId;
     }
 
-    public void setDistributerId(int distributerId) {
-        this.distributerId = distributerId;
+    public void setDistributorId(int distributerId) {
+        this.distributorId = distributerId;
     }
 
     public String getName() {

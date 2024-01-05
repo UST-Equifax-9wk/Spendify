@@ -1,8 +1,14 @@
 package com.revature.Spendify.entities;
 
-import jakarta.persistence.*;
-
 import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "accounts")
 public class Account {
@@ -14,14 +20,14 @@ public class Account {
     @Column(name = "account_name")
     private String accountName;
 
-    @Column(name = "distributer_flag")
+    @Column(name = "distributor_flag")
     private boolean distributerFlag;
 
     @OneToOne(mappedBy = "account")
     private User user;
 
     @OneToOne(mappedBy = "account")
-    private Distributer distributer;
+    private Distributor distributer;
 
     @OneToMany(mappedBy = "account")
     private List<Cart> cartList;
@@ -61,11 +67,11 @@ public class Account {
         this.user = user;
     }
 
-    public Distributer getDistributer() {
+    public Distributor getDistributor() {
         return distributer;
     }
 
-    public void setDistributer(Distributer distributer) {
+    public void setDistributor(Distributor distributer) {
         this.distributer = distributer;
     }
 
