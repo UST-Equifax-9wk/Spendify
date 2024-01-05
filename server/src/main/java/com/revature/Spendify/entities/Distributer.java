@@ -20,6 +20,22 @@ public class Distributer {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    public Distributer() {
+    }
+
+    public Distributer(String name, String email, Account account) {
+        this.name = name;
+        this.email = email;
+        this.account = account;
+    }
+
+    public Distributer(int distributerId, String name, String email, Account account) {
+        this.distributerId = distributerId;
+        this.name = name;
+        this.email = email;
+        this.account = account;
+    }
+
     public int getDistributerId() {
         return distributerId;
     }

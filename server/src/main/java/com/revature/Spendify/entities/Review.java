@@ -23,6 +23,24 @@ public class Review {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    public Review() {
+    }
+
+    public Review(int rating, String review, User user, Product product) {
+        this.rating = rating;
+        this.review = review;
+        this.user = user;
+        this.product = product;
+    }
+
+    public Review(int reviewId, int rating, String review, User user, Product product) {
+        this.reviewId = reviewId;
+        this.rating = rating;
+        this.review = review;
+        this.user = user;
+        this.product = product;
+    }
+
     public int getReviewId() {
         return reviewId;
     }

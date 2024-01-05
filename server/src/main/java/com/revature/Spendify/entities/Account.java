@@ -29,6 +29,28 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Product> productList;
 
+    public Account() {
+    }
+
+    public Account(String accountName, boolean distributerFlag, User user, Distributer distributer, List<Cart> cartList, List<Product> productList) {
+        this.accountName = accountName;
+        this.distributerFlag = distributerFlag;
+        this.user = user;
+        this.distributer = distributer;
+        this.cartList = cartList;
+        this.productList = productList;
+    }
+
+    public Account(int accountId, String accountName, boolean distributerFlag, User user, Distributer distributer, List<Cart> cartList, List<Product> productList) {
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.distributerFlag = distributerFlag;
+        this.user = user;
+        this.distributer = distributer;
+        this.cartList = cartList;
+        this.productList = productList;
+    }
+
     public int getAccountId() {
         return accountId;
     }

@@ -14,6 +14,14 @@ public class Password {
     @Column
     private String password;
 
+    public Password() {
+    }
+
+    public Password(String accountName, String password) {
+        this.accountName = accountName;
+        this.password = password;
+    }
+
     public String getAccountName() {
         return accountName;
     }

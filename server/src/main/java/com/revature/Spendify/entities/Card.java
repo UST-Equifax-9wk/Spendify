@@ -26,6 +26,26 @@ public class Card {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Card() {
+    }
+
+    public Card(String name, String cardNumber, String expirationDate, Order order, User user) {
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.expirationDate = expirationDate;
+        this.order = order;
+        this.user = user;
+    }
+
+    public Card(int cardId, String name, String cardNumber, String expirationDate, Order order, User user) {
+        this.cardId = cardId;
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.expirationDate = expirationDate;
+        this.order = order;
+        this.user = user;
+    }
+
     public int getCardId() {
         return cardId;
     }

@@ -33,6 +33,30 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Card> cardList;
 
+    public User() {
+    }
+
+    public User(String first_name, String last_name, String address, String email, Review review, Account account, List<Card> cardList) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.address = address;
+        this.email = email;
+        this.review = review;
+        this.account = account;
+        this.cardList = cardList;
+    }
+
+    public User(int userId, String first_name, String last_name, String address, String email, Review review, Account account, List<Card> cardList) {
+        this.userId = userId;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.address = address;
+        this.email = email;
+        this.review = review;
+        this.account = account;
+        this.cardList = cardList;
+    }
+
     public int getUserId() {
         return userId;
     }

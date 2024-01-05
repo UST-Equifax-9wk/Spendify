@@ -36,11 +36,42 @@ public class Product {
     private List<Review> reviewList;
 
     @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToMany(mappedBy = "productList")
-    private List<CartLookup> cartLookupList;
+    public Product() {
+    }
+
+    public Product(String productName, int price, String category, double weight, int stock, double discount, String description, List<Review> reviewList, Cart cart, Account account) {
+        this.productName = productName;
+        this.price = price;
+        this.category = category;
+        this.weight = weight;
+        this.stock = stock;
+        this.discount = discount;
+        this.description = description;
+        this.reviewList = reviewList;
+        this.cart = cart;
+        this.account = account;
+    }
+
+    public Product(int productId, String productName, int price, String category, double weight, int stock, double discount, String description, List<Review> reviewList, Cart cart, Account account) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.category = category;
+        this.weight = weight;
+        this.stock = stock;
+        this.discount = discount;
+        this.description = description;
+        this.reviewList = reviewList;
+        this.cart = cart;
+        this.account = account;
+    }
 
     public int getProductId() {
         return productId;
@@ -122,11 +153,11 @@ public class Product {
         this.account = account;
     }
 
-    public List<CartLookup> getCartLookupList() {
-        return cartLookupList;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setCartLookupList(List<CartLookup> cartLookupList) {
-        this.cartLookupList = cartLookupList;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

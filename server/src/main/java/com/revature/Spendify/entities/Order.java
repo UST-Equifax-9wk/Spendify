@@ -20,6 +20,22 @@ public class Order {
     @JoinColumn(name = "card_id")
     private Card card;
 
+    public Order() {
+    }
+
+    public Order(String dateTime, Cart cart, Card card) {
+        this.dateTime = dateTime;
+        this.cart = cart;
+        this.card = card;
+    }
+
+    public Order(int orderId, String dateTime, Cart cart, Card card) {
+        this.orderId = orderId;
+        this.dateTime = dateTime;
+        this.cart = cart;
+        this.card = card;
+    }
+
     public int getOrderId() {
         return orderId;
     }

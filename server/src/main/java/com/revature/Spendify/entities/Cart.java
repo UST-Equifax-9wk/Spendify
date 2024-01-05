@@ -17,12 +17,30 @@ public class Cart {
     @OneToOne(mappedBy = "cart")
     private Order order;
 
+    @OneToMany(mappedBy = "cart")
+    List<Product> productList;
+
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToMany(mappedBy = "cartList")
-    List<CartLookup> cartLookUpList;
+    public Cart() {
+    }
+
+    public Cart(boolean isActive, Order order, List<Product> productList, Account account) {
+        this.isActive = isActive;
+        this.order = order;
+        this.productList = productList;
+        this.account = account;
+    }
+
+    public Cart(int cartId, boolean isActive, Order order, List<Product> productList, Account account) {
+        this.cartId = cartId;
+        this.isActive = isActive;
+        this.order = order;
+        this.productList = productList;
+        this.account = account;
+    }
 
     public int getCartId() {
         return cartId;
@@ -56,11 +74,11 @@ public class Cart {
         this.account = account;
     }
 
-    public List<CartLookup> getCartLookUpList() {
-        return cartLookUpList;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setCartLookUpList(List<CartLookup> cartLookUpList) {
-        this.cartLookUpList = cartLookUpList;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }
