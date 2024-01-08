@@ -1,7 +1,6 @@
 package com.revature.Spendify.entities;
 
-<<<<<<< HEAD
-=======
+
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;

@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.Spendify.DTOs.DistributorAccountDto;
 import com.revature.Spendify.entities.Distributor;
 import com.revature.Spendify.services.DistributorService;
 
@@ -21,13 +19,6 @@ public class DistributorController {
 
     public DistributorController(DistributorService distributorService) {
         this.distributorService = distributorService;
-    }
-
-    @PostMapping("/distributers")
-    public ResponseEntity<Distributor> createDistributor(@RequestBody DistributorAccountDto distributorAccountDto) {
-        Distributor distributor = distributorAccountDto.getDistributor();
-        Distributor createdDistributor = distributorService.createDistributor(distributorAccountDto.getAccountName(), distributorAccountDto.getPassword(), distributor);
-        return ResponseEntity.ok(createdDistributor);
     }
 
     @PutMapping("/distributers/{id}")

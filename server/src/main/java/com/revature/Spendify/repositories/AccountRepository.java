@@ -8,7 +8,6 @@ import com.revature.Spendify.entities.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
     Account findByAccountId(Long accountId);
-    Account findByEmail(String email);
     void deleteByAccountId(Long accountId);
     Account findByAccountName(String accountName);
     
