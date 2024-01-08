@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.Spendify.DTOs.DistributorAccountDto;
 import com.revature.Spendify.entities.Distributor;
 import com.revature.Spendify.services.DistributorService;
 
@@ -23,8 +24,9 @@ public class DistributorController {
     }
 
     @PostMapping("/distributers")
-    public ResponseEntity<Distributor> createDistributor(@RequestBody Distributor distributor) {
-        Distributor createdDistributor = distributorService.createDistributer(distributor);
+    public ResponseEntity<Distributor> createDistributor(@RequestBody DistributorAccountDto distributorAccountDto) {
+        Distributor distributor = distributorAccountDto.getDistributor();
+        Distributor createdDistributor = distributorService.createDistributor(distributorAccountDto.getAccountName(), distributorAccountDto.getPassword(), distributor);
         return ResponseEntity.ok(createdDistributor);
     }
 

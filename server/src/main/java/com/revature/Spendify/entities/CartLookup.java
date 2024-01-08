@@ -1,7 +1,16 @@
 package com.revature.Spendify.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity(name = "cart_lookup")
@@ -26,7 +35,7 @@ public class CartLookup {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "carts",
             joinColumns = @JoinColumn(name = "cart_id"))
-    @JsonBackReference
+    @JsonBackReference(value = "cart_cartlookup")
     private Cart cart;
 
     public CartLookup() {

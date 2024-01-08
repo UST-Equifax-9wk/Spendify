@@ -2,6 +2,9 @@ package com.revature.Spendify.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,10 +30,11 @@ public class Cart {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonBackReference(value = "account_cart")
     private Account account;
 
     @OneToMany(mappedBy = "cart")
-    
+    @JsonManagedReference(value = "cart_cartlookup")
     List<CartLookup> cartLookUpList;
 
     public Cart() {
