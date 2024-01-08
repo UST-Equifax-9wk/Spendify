@@ -18,13 +18,18 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "cart_id")
-    @JsonBackReference
+    @JsonBackReference("cart")
     private Cart cart;
 
     @OneToOne
     @JoinColumn(name = "card_id")
-    @JsonBackReference
+    @JsonBackReference("order")
     private Card card;
+
+    @ManyToOne
+    @JsonBackReference("account-orders")
+    private Account account;
+
     public Order() {
     }
 

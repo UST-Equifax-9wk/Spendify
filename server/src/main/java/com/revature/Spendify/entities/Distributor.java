@@ -19,7 +19,7 @@ public class Distributor {
 
     @OneToOne
     @JoinColumn(name = "account_id")
-    @JsonManagedReference
+    @JsonManagedReference("distributor")
     private Account account;
     public Distributor() {
     }

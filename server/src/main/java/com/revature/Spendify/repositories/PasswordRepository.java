@@ -1,10 +1,9 @@
 package com.revature.Spendify.repositories;
 
-import com.revature.Spendify.entities.User;
+import com.revature.Spendify.entities.Password;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    public User findByEmail(String email);
+public interface PasswordRepository extends JpaRepository<Password,String> {
 }

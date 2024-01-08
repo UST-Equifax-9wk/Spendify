@@ -1,5 +1,6 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -41,16 +42,16 @@ public class Product {
     private String description;
 
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference
+    @JsonManagedReference("reviewList-product")
     private List<Review> reviewList;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
-    @JsonManagedReference
+    @JsonBackReference("productList")
     private Account account;
 
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference
+    @JsonManagedReference("product")
     private List<CartLookup> cartLookupList;
     public Product() {
     }

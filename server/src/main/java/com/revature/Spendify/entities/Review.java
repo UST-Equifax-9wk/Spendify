@@ -18,12 +18,12 @@ public class Review {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonBackReference("review")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonBackReference
+    @JsonBackReference("reviewList-product")
     private Product product;
 
     public Review() {
