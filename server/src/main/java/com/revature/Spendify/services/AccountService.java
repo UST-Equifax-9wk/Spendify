@@ -33,7 +33,7 @@ public class AccountService {
         )throw new InvalidInputException(InvalidInputException.invalidInput);
         if(findAccountByName(userAccountDto.getAccountName())!=null) throw new InvalidInputException(InvalidInputException.duplicateUseOfUniqueAttribute);
 
-        Account account = new Account(userAccountDto.getAccountName(), false, userAccountDto.getUser(), null, null, null);
+        Account account = new Account(userAccountDto.getAccountName(), false, userAccountDto.getUser(), null, null, null,null);
         Password password = new Password(userAccountDto.getAccountName(),userAccountDto.getPassword());
         userAccountDto.getUser().setAccount(account);
         this.userService.createUser(userAccountDto.getUser());

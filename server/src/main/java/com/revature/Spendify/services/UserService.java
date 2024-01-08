@@ -24,7 +24,7 @@ public class UserService {
                 user.getAddress()==null||
                 user.getEmail()==null||
                 user.getAccount()==null||
-                checkEmail(user.getEmail())
+                !checkEmail(user.getEmail())
         ) throw new InvalidInputException(InvalidInputException.invalidInput);
         if(userRepository.findByEmail(user.getEmail())!=null)throw new InvalidInputException(InvalidInputException.duplicateUseOfUniqueAttribute);
         userRepository.save(user);
