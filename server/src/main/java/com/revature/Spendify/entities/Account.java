@@ -1,13 +1,9 @@
 package com.revature.Spendify.entities;
 
-<<<<<<< HEAD
-=======
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-
->>>>>>> origin/main
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,33 +23,26 @@ public class Account {
     @Column(name = "account_name",nullable = false)
     private String accountName;
 
-<<<<<<< HEAD
-    @Column(name = "distributor_flag")
-    private boolean distributerFlag;
-=======
     @Column(name = "distributor_flag", nullable = false)
     private boolean distributorFlag;
->>>>>>> origin/main
 
     @OneToOne(mappedBy = "account")
-    @JsonBackReference
+    @JsonBackReference(value = "user_account")
     private User user;
 
     @OneToOne(mappedBy = "account")
-<<<<<<< HEAD
-    private Distributor distributer;
-=======
-    @JsonBackReference
+    @JsonBackReference(value = "distributor_account")
     private Distributor distributor;
->>>>>>> origin/main
 
     @OneToMany(mappedBy = "account")
-    @JsonManagedReference
+    @JsonManagedReference(value = "account_cart")
     private List<Cart> cartList;
 
     @OneToMany(mappedBy = "account")
-    @JsonManagedReference
+    @JsonManagedReference(value = "account_product")
     private List<Product> productList;
+
+    private Distributor distributer;
 
     public Account() {
     }
@@ -110,19 +99,11 @@ public class Account {
     }
 
     public Distributor getDistributor() {
-<<<<<<< HEAD
-        return distributer;
-    }
-
-    public void setDistributor(Distributor distributer) {
-        this.distributer = distributer;
-=======
         return distributor;
     }
 
     public void setDistributor(Distributor distributor) {
         this.distributor = distributor;
->>>>>>> origin/main
     }
 
     public List<Cart> getCartList() {

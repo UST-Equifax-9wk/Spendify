@@ -1,8 +1,16 @@
 package com.revature.Spendify.entities;
 
-import jakarta.persistence.*;
-
 import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "carts")
 public class Cart {
@@ -22,6 +30,7 @@ public class Cart {
     private Account account;
 
     @OneToMany(mappedBy = "cart")
+    
     List<CartLookup> cartLookUpList;
 
     public Cart() {

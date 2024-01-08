@@ -2,7 +2,15 @@ package com.revature.Spendify.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "cards")
 public class Card {
@@ -21,13 +29,13 @@ public class Card {
     private String expirationDate;
 
     @OneToOne(mappedBy = "card")
-    @JsonManagedReference
+    @JsonManagedReference(value = "card_order")
     private Order order;
 
     // Foreign key
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonBackReference(value = "user_card")
     private User user;
 
     public Card() {

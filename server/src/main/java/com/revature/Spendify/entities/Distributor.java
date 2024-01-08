@@ -1,5 +1,7 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Distributor {
 
     @OneToOne
     @JoinColumn(name = "account_id")
+    @JsonManagedReference(value = "distributor_account")
     private Account account;
 
     public int getDistributorId() {
