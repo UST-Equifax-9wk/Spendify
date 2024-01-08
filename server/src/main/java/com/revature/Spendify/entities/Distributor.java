@@ -26,7 +26,7 @@ public class Distributor {
 
     @OneToOne
     @JoinColumn(name = "account_id")
-    @JsonManagedReference(value = "distributor_account")
+    @JsonManagedReference("distributor")
     private Account account;
 
     public int getDistributorId() {

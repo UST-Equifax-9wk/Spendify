@@ -25,18 +25,25 @@ public class User {
     private String email;
 
     @OneToOne(mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference("review")
     private Review review;
 
     @OneToOne
     @JoinColumn(name = "account_id")
-    @JsonManagedReference
+    @JsonManagedReference("account")
     private Account account;
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference("user")
     private List<Card> cardList;
     public User() {
+    }
+
+    public User(String firstName, String lastName, String address, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
     }
 
     public User(String firstName, String lastName, String address, String email, Review review, Account account, List<Card> cardList) {

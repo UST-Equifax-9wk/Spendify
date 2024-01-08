@@ -29,13 +29,13 @@ public class Card {
     private String expirationDate;
 
     @OneToOne(mappedBy = "card")
-    @JsonManagedReference(value = "card_order")
+    @JsonManagedReference("order")
     private Order order;
 
     // Foreign key
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference(value = "user_card")
+    @JsonBackReference("user")
     private User user;
 
     public Card() {

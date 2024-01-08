@@ -20,43 +20,45 @@ public class Account {
     @Column(name = "account_id")
     private int accountId;
 
-    @Column(name = "account_name",nullable = false)
+    @Column(name = "account_name",nullable = false, unique = true)
     private String accountName;
 
     @Column(name = "distributor_flag", nullable = false)
     private boolean distributorFlag;
 
     @OneToOne(mappedBy = "account")
-    @JsonBackReference(value = "user_account")
+    @JsonBackReference("account")
     private User user;
 
     @OneToOne(mappedBy = "account")
-    @JsonBackReference(value = "distributor_account")
+    @JsonBackReference("distributor")
     private Distributor distributor;
 
     @OneToMany(mappedBy = "account")
-    @JsonManagedReference(value = "account_cart")
+    @JsonManagedReference("cartList")
     private List<Cart> cartList;
 
     @OneToMany(mappedBy = "account")
-    @JsonManagedReference(value = "account_product")
+    @JsonManagedReference("productList")
     private List<Product> productList;
 
-    private Distributor distributer;
-
+    @OneToMany(mappedBy="account")
+    @JsonManagedReference("account-orders")
+    private List<Order> orderList;
     public Account() {
     }
 
-    public Account(String accountName, boolean distributorFlag, User user, Distributor distributor, List<Cart> cartList, List<Product> productList) {
+    public Account(String accountName, boolean distributorFlag, User user, Distributor distributor, List<Cart> cartList, List<Product> productList,List<Order> orderList) {
         this.accountName = accountName;
         this.distributorFlag = distributorFlag;
         this.user = user;
         this.distributor = distributor;
         this.cartList = cartList;
         this.productList = productList;
+        this.orderList=orderList;
     }
 
-    public Account(int accountId, String accountName, boolean distributorFlag, User user, Distributor distributor, List<Cart> cartList, List<Product> productList) {
+    public Account(int accountId, String accountName, boolean distributorFlag, User user, Distributor distributor, List<Cart> cartList, List<Product> productList, List<Order> orderList) {
         this.accountId = accountId;
         this.accountName = accountName;
         this.distributorFlag = distributorFlag;
@@ -64,6 +66,7 @@ public class Account {
         this.distributor = distributor;
         this.cartList = cartList;
         this.productList = productList;
+        this.orderList=orderList;
     }
 
     public int getAccountId() {
@@ -120,5 +123,13 @@ public class Account {
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 }

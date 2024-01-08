@@ -28,14 +28,14 @@ public class CartLookup {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "products",
             joinColumns = @JoinColumn(name = "product_id"))
-    @JsonBackReference
+    @JsonBackReference("product")
     private Product product;
 
     // Not sure about this relationship with cart
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "carts",
             joinColumns = @JoinColumn(name = "cart_id"))
-    @JsonBackReference(value = "cart_cartlookup")
+    @JsonBackReference("cart-cartlookup")
     private Cart cart;
 
     public CartLookup() {

@@ -1,5 +1,6 @@
 package com.revature.Spendify.entities;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -49,16 +50,16 @@ public class Product {
     private String description;
 
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference
+    @JsonManagedReference("reviewList-product")
     private List<Review> reviewList;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
-    @JsonBackReference(value = "account_product")
+    @JsonBackReference("productList")
     private Account account;
 
     @OneToMany(mappedBy = "product")
-    @JsonManagedReference
+    @JsonManagedReference("product")
     private List<CartLookup> cartLookupList;
     public Product() {
     }
