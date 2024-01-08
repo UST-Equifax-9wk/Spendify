@@ -20,23 +20,10 @@ public class Authentication {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .httpBasic(withDefaults())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login")
-                        .permitAll()
-                        .anyRequest().authenticated()
-                )
-//                .httpBasic(httpBasicConfigurer ->
-//                        httpBasicConfigurer.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-//                )
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .authorizeRequests()
+                .anyRequest().authenticated()
                 .and()
-                .logout(logout -> logout
-                        .deleteCookies("JSESSIONID")
-                        .invalidateHttpSession(true)
-                        .permitAll()
-                );
+                .httpBasic();
 
         return http.build();
     }
