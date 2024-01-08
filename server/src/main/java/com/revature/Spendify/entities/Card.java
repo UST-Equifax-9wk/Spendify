@@ -1,31 +1,54 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity(name = "cards")
 public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "card_name")
+    @Column(name = "card_id")
     private int cardId;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "card_number")
+    @Column(name = "card_number",nullable = false)
     private String cardNumber;
 
-    @Column(name = "expiration_date")
+    @Column(name = "expiration_date",nullable = false)
     private String expirationDate;
 
     @OneToOne(mappedBy = "card")
+    @JsonManagedReference("order")
     private Order order;
 
     // Foreign key
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference("user")
     private User user;
 
+    public Card() {
+    }
+
+    public Card(String name, String cardNumber, String expirationDate, Order order, User user) {
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.expirationDate = expirationDate;
+        this.order = order;
+        this.user = user;
+    }
+
+    public Card(int cardId, String name, String cardNumber, String expirationDate, Order order, User user) {
+        this.cardId = cardId;
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.expirationDate = expirationDate;
+        this.order = order;
+        this.user = user;
+    }
     public int getCardId() {
         return cardId;
     }

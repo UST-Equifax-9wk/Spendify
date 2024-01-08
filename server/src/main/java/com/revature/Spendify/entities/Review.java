@@ -1,5 +1,6 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity(name = "reviews")
@@ -9,20 +10,39 @@ public class Review {
     @Column(name = "review_id")
     private int reviewId;
 
-    @Column
+    @Column(nullable = false)
     private int rating;
 
     @Column
-    private String review;
+    private String reviewText;
 
     @OneToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference("review")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonBackReference("reviewList-product")
     private Product product;
 
+    public Review() {
+    }
+
+    public Review(int rating, String reviewText, User user, Product product) {
+        this.rating = rating;
+        this.reviewText = reviewText;
+        this.user = user;
+        this.product = product;
+    }
+
+    public Review(int reviewId, int rating, String reviewText, User user, Product product) {
+        this.reviewId = reviewId;
+        this.rating = rating;
+        this.reviewText = reviewText;
+        this.user = user;
+        this.product = product;
+    }
     public int getReviewId() {
         return reviewId;
     }
@@ -39,12 +59,12 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getReview() {
-        return review;
+    public String getReviewText() {
+        return reviewText;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
     }
 
     public User getUser() {

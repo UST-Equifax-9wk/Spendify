@@ -1,5 +1,7 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,14 +17,35 @@ public class Cart {
     private boolean isActive;
 
     @OneToOne(mappedBy = "cart")
+    @JsonManagedReference("cart")
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonBackReference("cartList")
     private Account account;
 
-    @ManyToMany(mappedBy = "cartList")
+    @OneToMany(mappedBy = "cart")
+    @JsonManagedReference("cart-cartlookup")
     List<CartLookup> cartLookUpList;
+
+    public Cart() {
+    }
+
+    public Cart(boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.isActive = isActive;
+        this.order = order;
+        this.account = account;
+        this.cartLookUpList = cartLookUpList;
+    }
+
+    public Cart(int cartId, boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.cartId = cartId;
+        this.isActive = isActive;
+        this.order = order;
+        this.account = account;
+        this.cartLookUpList = cartLookUpList;
+    }
 
     public int getCartId() {
         return cartId;

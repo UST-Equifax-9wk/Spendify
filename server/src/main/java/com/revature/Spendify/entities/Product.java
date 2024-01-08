@@ -1,29 +1,38 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.List;
 
 @Entity(name = "products")
 public class Product {
+    enum Category{
+        TECH,
+        PETS,
+        GROCERIES,
+        CLEANING
+    }
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "product_id")
     private int productId;
 
-    @Column(name = "product_name")
+    @Column(name = "product_name",nullable = false)
     private String productName;
 
-    @Column
-    private int price;
+    @Column(nullable = false)
+    private double price;
 
-    @Column
-    private String category;
+    @Column(nullable = false)
+    private Category category;
 
     @Column
     private double weight;
 
-    @Column
+    @Column(columnDefinition = "INTEGER DEFAULT 1")
     private int stock;
 
     @Column
@@ -33,15 +42,44 @@ public class Product {
     private String description;
 
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference("reviewList-product")
     private List<Review> reviewList;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonBackReference("productList")
     private Account account;
 
-    @ManyToMany(mappedBy = "productList")
+    @OneToMany(mappedBy = "product")
+    @JsonManagedReference("product")
     private List<CartLookup> cartLookupList;
+    public Product() {
+    }
 
+    public Product(String productName, double price, Category category, double weight, int stock, double discount, String description, List<Review> reviewList, Account account) {
+        this.productName = productName;
+        this.price = price;
+        this.category = category;
+        this.weight = weight;
+        this.stock = stock;
+        this.discount = discount;
+        this.description = description;
+        this.reviewList = reviewList;
+        this.account = account;
+    }
+
+    public Product(int productId, String productName, double price, Category category, double weight, int stock, double discount, String description, List<Review> reviewList, Account account) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.category = category;
+        this.weight = weight;
+        this.stock = stock;
+        this.discount = discount;
+        this.description = description;
+        this.reviewList = reviewList;
+        this.account = account;
+    }
     public int getProductId() {
         return productId;
     }
@@ -58,19 +96,19 @@ public class Product {
         this.productName = productName;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
