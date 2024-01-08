@@ -8,11 +8,18 @@ import jakarta.persistence.Id;
 public class Password {
 
     @Id
-    @Column(name = "account_name")
+    @Column(name = "account_name", unique = true)
     private String accountName;
 
-    @Column
+    @Column(nullable = false)
     private String password;
+    public Password() {
+    }
+
+    public Password(String accountName, String password) {
+        this.accountName = accountName;
+        this.password = password;
+    }
 
     public String getAccountName() {
         return accountName;

@@ -1,5 +1,12 @@
 package com.revature.Spendify.entities;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+
+>>>>>>> origin/main
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -17,23 +24,58 @@ public class Account {
     @Column(name = "account_id")
     private int accountId;
 
-    @Column(name = "account_name")
+    @Column(name = "account_name",nullable = false)
     private String accountName;
 
+<<<<<<< HEAD
     @Column(name = "distributor_flag")
     private boolean distributerFlag;
+=======
+    @Column(name = "distributor_flag", nullable = false)
+    private boolean distributorFlag;
+>>>>>>> origin/main
 
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
     private User user;
 
     @OneToOne(mappedBy = "account")
+<<<<<<< HEAD
     private Distributor distributer;
+=======
+    @JsonBackReference
+    private Distributor distributor;
+>>>>>>> origin/main
 
     @OneToMany(mappedBy = "account")
+    @JsonManagedReference
     private List<Cart> cartList;
 
     @OneToMany(mappedBy = "account")
+    @JsonManagedReference
     private List<Product> productList;
+
+    public Account() {
+    }
+
+    public Account(String accountName, boolean distributorFlag, User user, Distributor distributor, List<Cart> cartList, List<Product> productList) {
+        this.accountName = accountName;
+        this.distributorFlag = distributorFlag;
+        this.user = user;
+        this.distributor = distributor;
+        this.cartList = cartList;
+        this.productList = productList;
+    }
+
+    public Account(int accountId, String accountName, boolean distributorFlag, User user, Distributor distributor, List<Cart> cartList, List<Product> productList) {
+        this.accountId = accountId;
+        this.accountName = accountName;
+        this.distributorFlag = distributorFlag;
+        this.user = user;
+        this.distributor = distributor;
+        this.cartList = cartList;
+        this.productList = productList;
+    }
 
     public int getAccountId() {
         return accountId;
@@ -51,12 +93,12 @@ public class Account {
         this.accountName = accountName;
     }
 
-    public boolean isDistributerFlag() {
-        return distributerFlag;
+    public boolean isDistributorFlag() {
+        return distributorFlag;
     }
 
-    public void setDistributerFlag(boolean distributerFlag) {
-        this.distributerFlag = distributerFlag;
+    public void setDistributorFlag(boolean distributorFlag) {
+        this.distributorFlag = distributorFlag;
     }
 
     public User getUser() {
@@ -68,11 +110,19 @@ public class Account {
     }
 
     public Distributor getDistributor() {
+<<<<<<< HEAD
         return distributer;
     }
 
     public void setDistributor(Distributor distributer) {
         this.distributer = distributer;
+=======
+        return distributor;
+    }
+
+    public void setDistributor(Distributor distributor) {
+        this.distributor = distributor;
+>>>>>>> origin/main
     }
 
     public List<Cart> getCartList() {
