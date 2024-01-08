@@ -8,6 +8,7 @@ import com.revature.Spendify.repositories.AccountRepository;
 import com.revature.Spendify.repositories.PasswordRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +16,18 @@ import org.springframework.stereotype.Service;
 public class AccountService {
     private PasswordRepository passwordRepository;
     private AccountRepository accountRepository;
+    private  PasswordEncoder passwordEncoder;
     private UserService userService;
 
     @Autowired
-    AccountService(PasswordRepository passwordRepository, AccountRepository accountRepository, UserService userService){
+    AccountService(PasswordRepository passwordRepository,
+                   AccountRepository accountRepository,
+                   UserService userService,
+                   PasswordEncoder passwordEncoder){
         this.accountRepository=accountRepository;
         this.passwordRepository=passwordRepository;
         this.userService=userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Account createUserAccount(UserAccountDto userAccountDto) throws InvalidInputException {
@@ -34,7 +40,7 @@ public class AccountService {
         if(findAccountByName(userAccountDto.getAccountName())!=null) throw new InvalidInputException(InvalidInputException.duplicateUseOfUniqueAttribute);
 
         Account account = new Account(userAccountDto.getAccountName(), false, userAccountDto.getUser(), null, null, null,null);
-        Password password = new Password(userAccountDto.getAccountName(),userAccountDto.getPassword());
+        Password password = new Password(userAccountDto.getAccountName(),passwordEncoder.encode(userAccountDto.getPassword()));
         userAccountDto.getUser().setAccount(account);
         this.userService.createUser(userAccountDto.getUser());
         this.accountRepository.save(account);
