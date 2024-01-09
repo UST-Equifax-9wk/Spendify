@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DistributorServiceService, NewDistributorDto } from '../distributor-service.service';
+import { DistributorService, NewDistributorDto } from '../distributor.service';
 import { PasswordStrengthDirective } from '../password-strength.directive';
 
 
@@ -15,12 +15,12 @@ import { PasswordStrengthDirective } from '../password-strength.directive';
 })
 export class DistributorRegisterComponent{
 
-  distributorService: DistributorServiceService;
+  distributorService: DistributorService;
   name: string;
   email: string;
   password: string;
 
-  constructor(private router: Router, distributorService: DistributorServiceService) { 
+  constructor(private router: Router, distributorService: DistributorService) { 
     this.name = '';
     this.email = '';
     this.password = '';
