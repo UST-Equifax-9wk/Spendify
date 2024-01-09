@@ -18,7 +18,7 @@ export class RegisterUserComponent {
   address="";
   accountName="";
   password="";
-  confirmPasword="";
+  confirmPassword="";
   clicked=false;
   constructor(remoteService:RemoteService){
     this.remote=remoteService;

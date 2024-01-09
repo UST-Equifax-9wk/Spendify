@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity(name = "products")
 public class Product {
-    enum Category{
+    public enum Category{
         TECH,
         PETS,
         GROCERIES,
@@ -27,6 +27,7 @@ public class Product {
     private double price;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @Column
