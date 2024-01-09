@@ -3,6 +3,8 @@ import { RemoteService, User, UserAccountDto } from '../remote.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CurrentUserService } from '../currentuser.service';
+import { CurrentAccountService } from '../current-account.service';
 
 @Component({
   selector: 'app-register-user',
@@ -24,9 +26,10 @@ export class RegisterUserComponent {
   invalidEmail=true;
   invalidAccountName=true;
   clicked=false;
-  constructor(remoteService:RemoteService){
+  currentService:CurrentAccountService;
+  constructor(remoteService:RemoteService, currentService:CurrentAccountService){
     this.remote=remoteService;
-    console.log("bark")
+    this.currentService=currentService;
   }
 
   register(){
@@ -63,7 +66,9 @@ export class RegisterUserComponent {
       }
       this.remote.registerUser(dto).subscribe({
         next:(data)=>{
-          alert("WAIT FOR CURRENT USER SERVICE")
+          let res = data.body as UserAccountDto;
+          this.currentService.setUserAccount(res.user,res.accountName);
+          alert("Success")
         },
         error:(error:HttpErrorResponse)=>{
           if(error.status==400) alert("Denied: Invalid Input");

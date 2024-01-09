@@ -22,14 +22,14 @@ export class RemoteService {
 }
 
 export interface User{
-  firstName:String;
-  lastName:String;
-  email:String;
-  address:String;
+  firstName:string;
+  lastName:string;
+  email:string;
+  address:string;
 }
 
 export interface UserAccountDto{
   user:User;
-  accountName:String;
-  password:String;
+  accountName:string;
+  password:string;
 }
