@@ -1,7 +1,14 @@
 package com.revature.Spendify.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "distributors")
 public class Distributor {
@@ -14,13 +21,15 @@ public class Distributor {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @OneToOne
     @JoinColumn(name = "account_id")
     @JsonManagedReference("distributor")
     private Account account;
+
+
     public Distributor() {
     }
 
@@ -36,6 +45,7 @@ public class Distributor {
         this.email = email;
         this.account = account;
     }
+
     public int getDistributorId() {
         return distributorId;
     }
