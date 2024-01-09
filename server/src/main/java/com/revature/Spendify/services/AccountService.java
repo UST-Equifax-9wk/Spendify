@@ -30,7 +30,7 @@ public class AccountService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Account createUserAccount(UserAccountDto userAccountDto) throws InvalidInputException {
+    public UserAccountDto createUserAccount(UserAccountDto userAccountDto) throws InvalidInputException {
         if(userAccountDto.getAccountName()==null ||
                 userAccountDto.getAccountName().length()<4||
                 userAccountDto.getUser()==null||
@@ -40,12 +40,14 @@ public class AccountService {
         if(findAccountByName(userAccountDto.getAccountName())!=null) throw new InvalidInputException(InvalidInputException.duplicateUseOfUniqueAttribute);
 
         Account account = new Account(userAccountDto.getAccountName(), false, userAccountDto.getUser(), null, null, null,null);
+
         Password password = new Password(userAccountDto.getAccountName(),passwordEncoder.encode(userAccountDto.getPassword()));
         userAccountDto.getUser().setAccount(account);
         this.userService.createUser(userAccountDto.getUser());
         this.accountRepository.save(account);
         this.passwordRepository.save(password);
-        return account;
+        UserAccountDto result = new UserAccountDto(userAccountDto.getUser(),userAccountDto.getAccountName(),"Hidden");
+        return result;
     }
 
     public Account findAccountByName(String name){

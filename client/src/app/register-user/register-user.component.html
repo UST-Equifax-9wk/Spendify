@@ -1,0 +1,45 @@
+<h1>Register A New User</h1>
+
+<label>Username:</label>
+<br>
+<input type="text" id="accountName" ([ngModel])="accountName">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<br>
+
+<label>First Name:</label>
+<br>
+<input type="text" id="firstName" ([ngModel])="firstName">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<br>
+
+<label>Last Name:</label>
+<br>
+<input type="text" id="lastName" ([ngModel])="lastName">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<br>
+
+<label>Email:</label>
+<br>
+<input type="text" id="email" ([ngModel])="email">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<br>
+
+<label>Address:</label>
+<br>
+<input type="text" id="address" ([ngModel])="address">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<br>
+
+<label>Password</label>
+<br>
+<input type="text" id="password" ([ngModel])="password">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<br>
+
+<label>Confirm Password</label>
+<br>
+<input type="text" id="confirmPassword" ([ngModel])="confirmPassword">
+<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+
+<br>
+<button type="submit" id="register" (click)="register()">Register</button>
