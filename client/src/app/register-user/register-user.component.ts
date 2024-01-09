@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { RemoteService } from '../remote.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RemoteService } from '../remote.service';
 
 @Component({
   selector: 'app-register-user',
@@ -18,7 +18,7 @@ export class RegisterUserComponent {
   address="";
   accountName="";
   password="";
-  confirmPasword="";
+  confirmPassword="";
   clicked=false;
   constructor(remoteService:RemoteService){
     this.remote=remoteService;
