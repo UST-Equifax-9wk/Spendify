@@ -1,45 +1,45 @@
 <h1>Register A New User</h1>
 
-<label>Username:</label>
+<label class="input-label">Username:</label>
 <br>
-<input type="text" id="accountName" [(ngModel)]="accountName">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
-<br>
-
-<label>First Name:</label>
-<br>
-<input type="text" id="firstName" [(ngModel)]="firstName">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<input type="text" class="text-input" id="accountName" [(ngModel)]="accountName">
+<label class="input-error" *ngIf="clicked && invalidAccountName">Please enter a username at least four characters long</label>
 <br>
 
-<label>Last Name:</label>
+<label class="input-label">First Name:</label>
 <br>
-<input type="text" id="lastName" [(ngModel)]="lastName">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
-<br>
-
-<label>Email:</label>
-<br>
-<input type="text" id="email" [(ngModel)]="email">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<input type="text" class="text-input" id="firstName" [(ngModel)]="firstName">
+<label class="input-error" *ngIf="clicked && firstName==''">Please fill out this field</label>
 <br>
 
-<label>Address:</label>
+<label class="input-label">Last Name:</label>
 <br>
-<input type="text" id="address" [(ngModel)]="address">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
-<br>
-
-<label>Password</label>
-<br>
-<input type="text" id="password" [(ngModel)]="password">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<input type="text" class="text-input" id="lastName" [(ngModel)]="lastName">
+<label class="input-error" *ngIf="clicked && lastName==''">Please fill out this field</label>
 <br>
 
-<label>Confirm Password</label>
+<label class="input-label">Email:</label>
 <br>
-<input type="text" id="confirmPassword" [(ngModel)]="confirmPassword">
-<ng-container *ngIf="clicked">Please fill out this field</ng-container>
+<input type="text" class="text-input" id="email" [(ngModel)]="email">
+<label class="input-error" *ngIf="clicked && invalidEmail">Please enter a valid email</label>
+<br>
 
+<label class="input-label">Address:</label>
 <br>
-<button type="submit" id="register" (click)="register()">Register</button>
+<input type="text" class="text-input" id="address" [(ngModel)]="address">
+<label class="input-error" *ngIf="clicked && address==''">Please fill out this field</label>
+<br>
+
+<label class="input-label">Password:</label>
+<br>
+<input type="password" class="text-input" id="password" [(ngModel)]="password">
+<label class="input-error" *ngIf="clicked && (password=='' || invalidPassword)">Please enter a valid password</label>
+<br>
+
+<label class="input-label">Confirm Password:</label>
+<br>
+<input type="password" class="text-input" id="confirmPassword" [(ngModel)]="confirmPassword">
+<label class="input-error" *ngIf="clicked && (confirmPassword=='' || confirmPassword!=password)">Your password is invalid or does not match this field</label>
+
+<br><br>
+<button type="submit" class="submit-button" id="register" (click)="register()">Register</button>

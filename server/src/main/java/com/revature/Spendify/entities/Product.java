@@ -1,11 +1,12 @@
 package com.revature.Spendify.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.*;
 
 @Entity(name = "products")
 public class Product {

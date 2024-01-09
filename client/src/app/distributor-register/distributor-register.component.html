@@ -1,0 +1,50 @@
+<form #distributorForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" #nameModel="ngModel" required pattern=".{4,}">
+        <div *ngIf="nameModel.errors && (nameModel.dirty || nameModel.touched)">
+            <div *ngIf="nameModel.errors?.['required'] && nameModel.touched"class="error">
+                Name is required
+            </div>
+            <div *ngIf="nameModel.errors?.['pattern'] && nameModel.touched" class="error">
+                Name must be at least 4 characters long.
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" #emailModel="ngModel" required email>
+        <div *ngIf="emailModel.errors && (emailModel.dirty || emailModel.touched)">
+            <div *ngIf="emailModel.errors?.['required'] && emailModel.touched" class="error">
+                Email is required
+            </div>
+            <div *ngIf="emailModel.errors?.['email'] && emailModel.touched" class="error">
+                Email must be a valid email address
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" #passwordModel="ngModel" passwordStrength required minlength="8">
+        <div *ngIf="passwordModel.errors && (passwordModel.dirty || passwordModel.touched)">
+            <div *ngIf="passwordModel.errors?.['required'] && passwordModel.touched" class="error">
+                Password is required
+            </div>
+            <div *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched" class="error">
+                Password must be at least 8 characters long.
+            </div>
+            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasUpperCase" class="error">
+                Password must contain at least one uppercase letter.
+            </div>
+            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasLowerCase" class="error">
+                Password must contain at least one lowercase letter.
+            </div>
+            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasNumeric" class="error">
+                Password must contain at least one number.
+            </div>
+            
+        </div>
+
+    </div>
+    <button type="submit" [disabled]="!distributorForm.valid" >Register</button>
+</form>

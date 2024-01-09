@@ -11,8 +11,8 @@ export class RemoteService {
     this.http=client;
   }
 
-  registerUser(account:AccountDto){
-    this.http.post(this.baseUrl+"/create-account/user",JSON.stringify(account),
+  registerUser(account:UserAccountDto){
+    return this.http.post(this.baseUrl+"/create-account/user",JSON.stringify(account),
     {observe:'response',
     withCredentials:true,
       headers: new HttpHeaders({
@@ -34,16 +34,16 @@ export class RemoteService {
 
 
 export interface User{
-  firstName:String;
-  lastName:String;
-  email:String;
-  address:String;
+  firstName:string;
+  lastName:string;
+  email:string;
+  address:string;
 }
 
-export interface AccountDto{
+export interface UserAccountDto{
   user:User;
-  accountName:String;
-  password:String;
+  accountName:string;
+  password:string;
 }
 
 export interface ProductDto{
