@@ -6,10 +6,10 @@ import { User } from './remote.service';
 })
 export class CurrentUserService {
 
-  firstName: String;
-  lastName: String;
-  email: String;
-  address: String;
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
 
 
   constructor() { 
