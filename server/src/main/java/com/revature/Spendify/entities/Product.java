@@ -58,7 +58,7 @@ public class Product {
     @JsonBackReference("productList")
     private Account account;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonManagedReference("product")
     private List<CartLookup> cartLookupList;
     public Product() {
@@ -168,11 +168,11 @@ public class Product {
         this.account = account;
     }
 
-    public List<CartLookup> getCartLookupList() {
-        return cartLookupList;
-    }
-
-    public void setCartLookupList(List<CartLookup> cartLookupList) {
-        this.cartLookupList = cartLookupList;
-    }
+//    public List<CartLookup> getCartLookupList() {
+//        return cartLookupList;
+//    }
+//
+//    public void setCartLookupList(List<CartLookup> cartLookupList) {
+//        this.cartLookupList = cartLookupList;
+//    }
 }

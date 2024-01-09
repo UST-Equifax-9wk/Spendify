@@ -12,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
+import java.util.List;
+
 @Entity(name = "cards")
 public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

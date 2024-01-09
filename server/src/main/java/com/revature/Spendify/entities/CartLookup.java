@@ -25,9 +25,10 @@ public class CartLookup {
     @Column(columnDefinition = "INTEGER DEFAULT 1")
     private int quantity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "products",
-            joinColumns = @JoinColumn(name = "product_id"))
+    @ManyToOne//(cascade = CascadeType.ALL)
+    //@JoinTable(name = "products",
+            //joinColumns =
+    @JoinColumn(name = "product_id")
     @JsonBackReference("product")
     private Product product;
 

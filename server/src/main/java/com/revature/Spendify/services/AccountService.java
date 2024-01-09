@@ -1,6 +1,7 @@
 package com.revature.Spendify.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.Spendify.DTOs.DistributorAccountDto;
@@ -19,16 +20,19 @@ public class AccountService {
     private PasswordRepository passwordRepository;
     private AccountRepository accountRepository;
     private DistributorService distributorService;
+    private PasswordEncoder passwordEncoder;
     private UserService userService;
     
 
     @Autowired
-    AccountService(PasswordRepository passwordRepository, AccountRepository accountRepository, UserService userService, DistributorService distributorService){
+    AccountService(PasswordRepository passwordRepository, AccountRepository accountRepository, UserService userService, DistributorService distributorService, PasswordEncoder passwordEncoder){
         this.accountRepository=accountRepository;
         this.passwordRepository=passwordRepository;
         this.userService=userService;
         this.distributorService=distributorService;
+        this.passwordEncoder = passwordEncoder;
     }
+
 
     public Account createDistributorAccount(DistributorAccountDto distributorAccountDto) throws InvalidInputException {
         if(distributorAccountDto.getAccountName()==null ||
@@ -58,7 +62,7 @@ public class AccountService {
         if(findAccountByName(userAccountDto.getAccountName())!=null) throw new InvalidInputException(InvalidInputException.duplicateUseOfUniqueAttribute);
 
         Account account = new Account(userAccountDto.getAccountName(), false, userAccountDto.getUser(), null, null, null,null);
-        Password password = new Password(userAccountDto.getAccountName(),userAccountDto.getPassword());
+        Password password = new Password(userAccountDto.getAccountName(),passwordEncoder.encode(userAccountDto.getPassword()));
         userAccountDto.getUser().setAccount(account);
         this.userService.createUser(userAccountDto.getUser());
         this.accountRepository.save(account);
