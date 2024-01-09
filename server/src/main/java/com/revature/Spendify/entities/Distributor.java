@@ -18,16 +18,33 @@ public class Distributor {
     @Column(name = "distributor_id")
     private int distributorId;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String email;
 
     @OneToOne
     @JoinColumn(name = "account_id")
     @JsonManagedReference("distributor")
     private Account account;
+
+
+    public Distributor() {
+    }
+
+    public Distributor(String name, String email, Account account) {
+        this.name = name;
+        this.email = email;
+        this.account = account;
+    }
+
+    public Distributor(int distributorId, String name, String email, Account account) {
+        this.distributorId = distributorId;
+        this.name = name;
+        this.email = email;
+        this.account = account;
+    }
 
     public int getDistributorId() {
         return distributorId;
