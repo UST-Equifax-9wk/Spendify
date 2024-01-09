@@ -44,7 +44,7 @@ public class AccountService {
         if(findAccountByName(distributorAccountDto.getAccountName())!=null) throw new InvalidInputException(InvalidInputException.duplicateUseOfUniqueAttribute);
 
         Account account = new Account(distributorAccountDto.getAccountName(), true, null, distributorAccountDto.getDistributor(), null, null,null);
-        Password password = new Password(distributorAccountDto.getAccountName(),distributorAccountDto.getPassword());
+        Password password = new Password(distributorAccountDto.getAccountName(),passwordEncoder.encode(distributorAccountDto.getPassword()));
         distributorAccountDto.getDistributor().setAccount(account);
         this.distributorService.createDistributer(distributorAccountDto.getDistributor());
         this.accountRepository.save(account);
