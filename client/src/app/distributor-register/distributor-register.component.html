@@ -12,7 +12,7 @@
         </div>
     </div>
     <div>
-        <label for="email">Email</label>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" [(ngModel)]="email" #emailModel="ngModel" required email>
         <div *ngIf="emailModel.errors && (emailModel.dirty || emailModel.touched)">
             <div *ngIf="emailModel.errors?.['required'] && emailModel.touched" class="error">
@@ -24,8 +24,8 @@
         </div>
     </div>
     <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" #passwordModel="ngModel" required registerPasswordStrength minlength="8">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" #passwordModel="ngModel" passwordStrength required minlength="8">
         <div *ngIf="passwordModel.errors && (passwordModel.dirty || passwordModel.touched)">
             <div *ngIf="passwordModel.errors?.['required'] && passwordModel.touched" class="error">
                 Password is required
@@ -33,17 +33,18 @@
             <div *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched" class="error">
                 Password must be at least 8 characters long.
             </div>
-            <div *ngIf="passwordModel.errors['hasUpperCase'] && passwordModel.touched" class="error">
+            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasUpperCase" class="error">
                 Password must contain at least one uppercase letter.
             </div>
-            <div *ngIf="passwordModel.errors['hasLowerCase'] && passwordModel.touched" class="error">
+            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasLowerCase" class="error">
                 Password must contain at least one lowercase letter.
             </div>
-            <div *ngIf="passwordModel.errors['hasNumeric'] && passwordModel.touched" class="error">
+            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasNumeric" class="error">
                 Password must contain at least one number.
             </div>
+            
         </div>
 
     </div>
-    <button type="submit" (click)="onSubmit()" [disabled]="!distributorForm.valid" >Register</button>
+    <button type="submit" [disabled]="!distributorForm.valid" >Register</button>
 </form>

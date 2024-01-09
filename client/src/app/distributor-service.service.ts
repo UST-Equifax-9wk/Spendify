@@ -21,7 +21,7 @@ export class DistributorServiceService {
    }
 
     registerDistributor(newDistributor: NewDistributorDto): Observable<HttpResponse<Object>> {
-      return this.httpClient.post(this.baseUrl + '/create-account/distributor', newDistributor,{
+      return this.httpClient.post(this.baseUrl + '/create-account/distributor', JSON.stringify(newDistributor),{
         observe: 'response',
         withCredentials: true,
         headers: new HttpHeaders({

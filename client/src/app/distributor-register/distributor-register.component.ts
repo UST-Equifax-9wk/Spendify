@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,9 +9,8 @@ import { PasswordStrengthDirective } from '../password-strength.directive';
 @Component({
   selector: 'app-distributor-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PasswordStrengthDirective],
   templateUrl: './distributor-register.component.html',
-  hostDirectives: [PasswordStrengthDirective],
   styleUrl: './distributor-register.component.css'
 })
 export class DistributorRegisterComponent{
@@ -44,14 +42,10 @@ export class DistributorRegisterComponent{
     .subscribe({
       next: data => {
         console.log(data);
-        //this.router.navigate(['/distributor-login']);
       },
       error: error => {
         console.error('There was an error!', error);
       }
     });
-  }
-    //this.router.navigate(['/distributor-login']);
-    handleError(error: HttpErrorResponse) {
   }
 }
