@@ -50,8 +50,8 @@ public class Distributor {
         return distributorId;
     }
 
-    public void setDistributorId(int distributerId) {
-        this.distributorId = distributerId;
+    public void setDistributorId(int distributorId) {
+        this.distributorId = distributorId;
     }
 
     public String getName() {
