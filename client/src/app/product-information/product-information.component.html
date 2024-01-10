@@ -1,0 +1,9 @@
+<h1>{{currentProduct.productName}}</h1>
+<p>Price: ${{currentProduct.price}}</p>
+<p>Stock: {{currentProduct.stock}}</p>
+<p>Weight: {{currentProduct.weight}} lbs</p>
+<p>Description: {{currentProduct.description}}</p>
+<br>
+<p>Review:</p>
+<br>
+<p (click)="returnToBrowsingList()" [ngClass]="{'pointer-cursor': isClickable}">Return to browsing list</p>
