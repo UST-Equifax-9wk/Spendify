@@ -1,3 +1,205 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.login-child {
+    position: absolute;
+    top: 7.94rem;
+    left: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.64) 0.01%,
+      rgba(0, 0, 0, 0.79) 0.02%,
+      rgba(0, 0, 0, 0.89) 0.03%,
+      #000
+    );
+    width: 90rem;
+    height: 56.06rem;
+    overflow: hidden;
+  }
+  .spendify {
+    position: relative;
+    font-weight: 800;
+    display: inline-block;
+    width: 15.38rem;
+    height: 2.44rem;
+    flex-shrink: 0;
+  }
+  .spendify-wrapper {
+    position: absolute;
+    top: 0.88rem;
+    left: 0;
+    width: 16.88rem;
+    height: 9.94rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.63rem;
+    box-sizing: border-box;
+  }
+  .frame-input,
+  .login-inner,
+  .login-item {
+    position: absolute;
+    background-color: #000;
+  }
+  .login-inner {
+    top: -1rem;
+    left: 0;
+    width: 90rem;
+    height: 10.81rem;
+    overflow: hidden;
+    font-size: 2.5rem;
+    color: #1ed760;
+  }
+  .frame-input,
+  .login-item {
+    top: 15.88rem;
+    left: 27.81rem;
+    border-radius: 12px;
+    width: 34.38rem;
+    height: 32.25rem;
+  }
+  .frame-input {
+    border: 1px solid #000;
+    outline: 0;
+    background-color: #fff;
+    top: 25.38rem;
+    left: 33.69rem;
+    border-radius: 17px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    width: 22.63rem;
+    height: 3rem;
+    color: black;
+    padding: 15px;
+  }
+  .username {
+    position: relative;
+    font-weight: 600;
+    display: inline-block;
+    width: 7.44rem;
+    height: 2.06rem;
+    flex-shrink: 0;
+  }
+  .username-wrapper {
+    top: 22.06rem;
+    left: 33.75rem;
+    width: 8.75rem;
+    height: 3.38rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.63rem;
+  }
+  .login-child1,
+  .password-wrapper,
+  .username-wrapper {
+    position: absolute;
+    box-sizing: border-box;
+  }
+  .login-child1 {
+    border: 1px solid #000;
+    outline: 0;
+    background-color: #fff;
+    top: 33.19rem;
+    left: 33.69rem;
+    border-radius: 17px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    width: 22.63rem;
+    height: 3rem;
+    color: black;
+    padding: 15px;
+  }
+  .password-wrapper {
+    top: 29.88rem;
+    left: 33.75rem;
+    width: 8.75rem;
+    height: 3.38rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.63rem;
+  }
+  .log-in-to {
+    position: relative;
+  }
+  .log-in-to-spendify-wrapper {
+    position: absolute;
+    top: 16.94rem;
+    left: 36.13rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.63rem;
+    font-size: 1.88rem;
+  }
+  .frame-child {
+    position: relative;
+    width: 27.13rem;
+    height: 0.06rem;
+    object-fit: contain;
+  }
+  .frame-div,
+  .login-inner1 {
+    position: absolute;
+    top: 43.31rem;
+    left: 30.81rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.63rem;
+  }
+  .login-inner1 {
+    top: 20.44rem;
+  }
+  .sign-in {
+    position: relative;
+    font-size: 1.88rem;
+    font-family: Inter;
+    color: #f9f9f9;
+    text-align: center;
+  }
+  .sign-in-wrapper {
+    cursor: pointer;
+    border: 0;
+    padding: 0.63rem;
+    background-color: #1ed760;
+    position: absolute;
+    top: 39.19rem;
+    left: 37.06rem;
+    border-radius: 30px;
+    width: 15.88rem;
+    height: 2.88rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .sign-up-for {
+    text-decoration: underline;
+    position: absolute;
+    top: 45.06rem;
+    left: 36.75rem;
+    font-size: 0.75rem;
+    color: inherit;
+    display: inline-block;
+    width: 17.13rem;
+    height: 1.19rem;
+  }
+  .login {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 64rem;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    font-family: Inter;
+  }
+  

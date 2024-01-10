@@ -30,6 +30,17 @@ export class RemoteService {
       })
     })
   }
+
+  login(accountName : string, password : string) {
+    return this.http.post(this.baseUrl+`/login`,JSON.stringify({ accountName, password }),
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
 }
 
 

@@ -59,5 +59,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 50px; /* Adjust the margin-top value as needed */
 }
 
-    
-
+body {
+    margin: 0;
+    line-height: normal;
+  }
