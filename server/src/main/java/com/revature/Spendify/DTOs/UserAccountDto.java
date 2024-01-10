@@ -1,24 +1,27 @@
-package com.revature.Spendify.entities;
+package com.revature.Spendify.DTOs;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.revature.Spendify.entities.User;
 
-@Entity(name = "passwords")
-public class Password {
-
-    @Id
-    @Column(name = "account_name", unique = true)
+public class UserAccountDto {
+    private User user;
     private String accountName;
-
-    @Column(nullable = false)
     private String password;
-    public Password() {
+
+    public UserAccountDto() {
     }
 
-    public Password(String accountName, String password) {
+    public UserAccountDto(User user, String accountName, String password) {
+        this.user = user;
         this.accountName = accountName;
         this.password = password;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAccountName() {

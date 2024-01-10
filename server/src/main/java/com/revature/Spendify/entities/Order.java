@@ -1,25 +1,50 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity(name = "orders")
 public class Order {
+    LocalDateTime now = LocalDateTime.now();
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "order_id")
     private int orderId;
 
-    @Column(name = "date_time")
-    private String dateTime;
+    @Column(name = "date_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime dateTime;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
+    @JsonBackReference("cart")
     private Cart cart;
 
     @OneToOne
     @JoinColumn(name = "card_id")
+    @JsonBackReference("order")
     private Card card;
 
+    @ManyToOne
+    @JsonBackReference("account-orders")
+    private Account account;
+
+    public Order() {
+    }
+
+    public Order(LocalDateTime dateTime, Cart cart, Card card) {
+        this.dateTime = dateTime;
+        this.cart = cart;
+        this.card = card;
+    }
+
+    public Order(int orderId, LocalDateTime dateTime, Cart cart, Card card) {
+        this.orderId = orderId;
+        this.dateTime = dateTime;
+        this.cart = cart;
+        this.card = card;
+    }
     public int getOrderId() {
         return orderId;
     }
@@ -28,11 +53,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

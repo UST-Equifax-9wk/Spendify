@@ -1,8 +1,20 @@
 package com.revature.Spendify.entities;
 
-import jakarta.persistence.*;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity(name = "carts")
 public class Cart {
@@ -15,14 +27,35 @@ public class Cart {
     private boolean isActive;
 
     @OneToOne(mappedBy = "cart")
+    @JsonManagedReference("cart")
     private Order order;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonBackReference("cartList")
     private Account account;
 
-    @ManyToMany(mappedBy = "cartList")
+    @OneToMany(mappedBy = "cart")
+    @JsonManagedReference("cart-cartlookup")
     List<CartLookup> cartLookUpList;
+
+    public Cart() {
+    }
+
+    public Cart(boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.isActive = isActive;
+        this.order = order;
+        this.account = account;
+        this.cartLookUpList = cartLookUpList;
+    }
+
+    public Cart(int cartId, boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.cartId = cartId;
+        this.isActive = isActive;
+        this.order = order;
+        this.account = account;
+        this.cartLookUpList = cartLookUpList;
+    }
 
     public int getCartId() {
         return cartId;

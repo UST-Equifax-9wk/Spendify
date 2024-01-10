@@ -1,8 +1,17 @@
 package com.revature.Spendify.entities;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import java.util.List;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
+
 
 @Entity(name = "cart_lookup")
 public class CartLookup {
@@ -13,19 +22,38 @@ public class CartLookup {
     @Column
     private int cartLookUpId;
 
-    @Column
-    private int quanity;
+    @Column(columnDefinition = "INTEGER DEFAULT 1")
+    private int quantity;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "products",
-            joinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> productList;
+    @ManyToOne//(cascade = CascadeType.ALL)
+    //@JoinTable(name = "products",
+            //joinColumns =
+    @JoinColumn(name = "product_id")
+    @JsonBackReference("product")
+    private Product product;
 
     // Not sure about this relationship with cart
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "carts",
             joinColumns = @JoinColumn(name = "cart_id"))
-    private List<Cart> cartList;
+    @JsonBackReference("cart-cartlookup")
+    private Cart cart;
+
+    public CartLookup() {
+    }
+
+    public CartLookup(int quantity, Product product, Cart cart) {
+        this.quantity = quantity;
+        this.product = product;
+        this.cart = cart;
+    }
+
+    public CartLookup(int cartLookUpId, int quantity, Product product, Cart cart) {
+        this.cartLookUpId = cartLookUpId;
+        this.quantity = quantity;
+        this.product = product;
+        this.cart = cart;
+    }
 
     public int getCartLookUpId() {
         return cartLookUpId;
@@ -35,27 +63,27 @@ public class CartLookup {
         this.cartLookUpId = cartLookUpId;
     }
 
-    public int getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(int quanity) {
-        this.quanity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public List<Cart> getCartList() {
-        return cartList;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

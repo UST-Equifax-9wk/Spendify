@@ -1,0 +1,45 @@
+<h1>Register A New User</h1>
+
+<label class="input-label">Username:</label>
+<br>
+<input type="text" class="text-input" id="accountName" [(ngModel)]="accountName">
+<label class="input-error" *ngIf="clicked && invalidAccountName">Please enter a username at least four characters long</label>
+<br>
+
+<label class="input-label">First Name:</label>
+<br>
+<input type="text" class="text-input" id="firstName" [(ngModel)]="firstName">
+<label class="input-error" *ngIf="clicked && firstName==''">Please fill out this field</label>
+<br>
+
+<label class="input-label">Last Name:</label>
+<br>
+<input type="text" class="text-input" id="lastName" [(ngModel)]="lastName">
+<label class="input-error" *ngIf="clicked && lastName==''">Please fill out this field</label>
+<br>
+
+<label class="input-label">Email:</label>
+<br>
+<input type="text" class="text-input" id="email" [(ngModel)]="email">
+<label class="input-error" *ngIf="clicked && invalidEmail">Please enter a valid email</label>
+<br>
+
+<label class="input-label">Address:</label>
+<br>
+<input type="text" class="text-input" id="address" [(ngModel)]="address">
+<label class="input-error" *ngIf="clicked && address==''">Please fill out this field</label>
+<br>
+
+<label class="input-label">Password:</label>
+<br>
+<input type="password" class="text-input" id="password" [(ngModel)]="password">
+<label class="input-error" *ngIf="clicked && (password=='' || invalidPassword)">Please enter a valid password</label>
+<br>
+
+<label class="input-label">Confirm Password:</label>
+<br>
+<input type="password" class="text-input" id="confirmPassword" [(ngModel)]="confirmPassword">
+<label class="input-error" *ngIf="clicked && (confirmPassword=='' || confirmPassword!=password)">Your password is invalid or does not match this field</label>
+
+<br><br>
+<button type="submit" class="submit-button" id="register" (click)="register()">Register</button>
