@@ -77,4 +77,12 @@ public class AccountService {
         if(name==null)return null;
         return this.accountRepository.findByAccountName(name);
     }
+
+
+    public Account retrieveAccount(String username) throws InvalidInputException {
+        if(username==null)return null;
+        Account account = this.accountRepository.findByAccountName(username);
+        if(account==null)throw new InvalidInputException(InvalidInputException.accountNotFound);
+        return account;
+    }
 }

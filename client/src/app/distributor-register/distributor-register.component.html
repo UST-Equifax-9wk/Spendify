@@ -33,13 +33,13 @@
             <div *ngIf="passwordModel.errors?.['minlength'] && passwordModel.touched" class="error">
                 Password must be at least 8 characters long.
             </div>
-            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasUpperCase" class="error">
+            <div *ngIf="!passwordModel.errors?.['passwordStrength']?.hasUpperCase" class="error">
                 Password must contain at least one uppercase letter.
             </div>
-            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasLowerCase" class="error">
+            <div *ngIf="!passwordModel.errors?.['passwordStrength']?.hasLowerCase" class="error">
                 Password must contain at least one lowercase letter.
             </div>
-            <div *ngIf="!passwordModel.errors?.['passwordStrength'].hasNumeric" class="error">
+            <div *ngIf="!passwordModel.errors?.['passwordStrength']?.hasNumeric" class="error">
                 Password must contain at least one number.
             </div>
             

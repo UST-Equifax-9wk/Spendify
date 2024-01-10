@@ -13,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "carts")
@@ -35,9 +34,9 @@ public class Cart {
     @JsonBackReference("cartList")
     private Account account;
 
-    @OneToMany(mappedBy = "cart")
-    @JsonManagedReference("cart-cartlookup")
-    List<CartLookup> cartLookUpList;
+    //@OneToMany(mappedBy = "cart")
+    //@JsonManagedReference("cart-cartlookup")
+    //List<CartLookup> cartLookUpList;
 
     public Cart() {
     }
@@ -46,7 +45,7 @@ public class Cart {
         this.isActive = isActive;
         this.order = order;
         this.account = account;
-        this.cartLookUpList = cartLookUpList;
+        //this.cartLookUpList = cartLookUpList;
     }
 
     public Cart(int cartId, boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
@@ -54,7 +53,7 @@ public class Cart {
         this.isActive = isActive;
         this.order = order;
         this.account = account;
-        this.cartLookUpList = cartLookUpList;
+        //this.cartLookUpList = cartLookUpList;
     }
 
     public int getCartId() {
@@ -88,12 +87,12 @@ public class Cart {
     public void setAccount(Account account) {
         this.account = account;
     }
-
+/* 
     public List<CartLookup> getCartLookUpList() {
         return cartLookUpList;
     }
 
     public void setCartLookUpList(List<CartLookup> cartLookUpList) {
         this.cartLookUpList = cartLookUpList;
-    }
+    }*/
 }

@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,27 @@ export class RemoteService {
       })
     })
   }
+
+  getAccount(username : string): Observable<HttpResponse<Object>> {
+    return this.http.get(this.baseUrl+"/retrieve-account/" + username,{
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
+  updateProduct(productDto : ProductDto) {
+    return this.http.put(this.baseUrl+`/product`,JSON.stringify(productDto),
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
 }
 
 
@@ -47,6 +69,8 @@ export interface UserAccountDto{
 }
 
 export interface ProductDto{
+  isEditing?: boolean;
+  productId? : number
   productName : string
   price : number
   category : string

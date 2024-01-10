@@ -38,13 +38,13 @@ export class CurrentAccountService {
     this.accountName=name;
     this.distributorFlag=true;
     }
-    getDistributorAccount():NewDistributorDto{
-      let dto:NewDistributorDto={
-        distributor: this.currentDistributor.getCurrentDistributor(),
-        accountName: this.accountName,
-        password: "Hidden"
-      }
-      return dto;
-      
+  getDistributorAccount():NewDistributorDto{
+    let dto:NewDistributorDto={
+      distributor: this.currentDistributor.getCurrentDistributor(),
+      accountName: this.accountName,
+      password: "Hidden"
     }
+    return dto;
+    
+  }
 }

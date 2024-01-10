@@ -15,7 +15,7 @@ export class CurrentDistributorService {
     this.email = "";
   }
 
-  getName(): String {
+  getName(): string {
     return this.name;
   }
 
