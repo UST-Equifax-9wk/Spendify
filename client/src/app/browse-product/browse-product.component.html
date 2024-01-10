@@ -1,0 +1,31 @@
+<h1>Search our great selection of products</h1>
+<br>
+<label for="productCategory">Category: </label>
+<select name="productCategory" id="productCategory" [(ngModel)]="category">
+<option value="TECH">TECH</option>
+<option value="PETS">PETS</option>
+<option value="KITCHEN">KITCHEN</option>
+<option value="OFFICE">OFFICE</option>
+</select><button (click)="browseProducts()">Browse Products</button>
+
+<div *ngIf="category">
+    <div *ngFor="let product of products">
+        <h3>{{product.productName}}</h3>
+        <p>$ {{product.price}} USD</p>
+        <p> Stock: {{product.stock}}</p>
+        <button (click)="showMoreInfo(product)" type="button">
+            {{!product.showMore?"Show More":"Show Less"}}
+        </button>
+
+        <ng-container *ngIf="product.showMore">
+            <p> Weight: {{product.weight}} lbs</p>
+            <p> Description: {{product.description}}</p>
+        </ng-container>
+
+    </div>
+</div>
+
+<!--
+<p>{{product.weight}} lbs</p>
+        <p>stock: {{product.stock}}</p>
+        <p>Description: {{product.description}}</p> -->

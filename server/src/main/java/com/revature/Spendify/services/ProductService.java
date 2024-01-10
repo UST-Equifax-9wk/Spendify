@@ -1,5 +1,6 @@
 package com.revature.Spendify.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,9 @@ public class ProductService {
         Account account = accountService.findAccountByName(accountName);
         product.setAccount(account);
         return createOrUpdateProduct(product);
+    }
+
+    public List<Product> productListByCategory(Product.Category category) {
+        return productRepository.findByCategory(category);
     }
 }

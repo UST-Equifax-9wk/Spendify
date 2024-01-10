@@ -52,6 +52,18 @@ export class RemoteService {
       })
     })
   }
+  
+  getListOfProducts(category: string): Observable<any> {
+    return this.http.get(this.baseUrl + `/${category}/products`,
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
 }
 
 
@@ -78,6 +90,11 @@ export interface ProductDto{
   stock : number
   discount : number
   description : string
+  // Added these two lists recently
+  reviewList: number[]
+  cartLookupList: number[]
+  // To allow collapsible attributes
+  showMore?:boolean 
 }
 
 export enum Category{

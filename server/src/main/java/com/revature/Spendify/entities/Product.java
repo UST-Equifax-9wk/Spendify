@@ -14,7 +14,9 @@ public class Product {
         TECH,
         PETS,
         GROCERIES,
-        CLEANING
+        CLEANING,
+        KITCHEN,
+        OFFICE
     }
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
