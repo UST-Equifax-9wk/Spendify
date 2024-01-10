@@ -16,7 +16,7 @@ public class Review {
     @Column
     private String reviewText;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonBackReference("review")
     private User user;

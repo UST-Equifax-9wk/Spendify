@@ -24,9 +24,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     @JsonManagedReference("review")
-    private Review review;
+    private List<Review> reviewList;
 
     @OneToOne
     @JoinColumn(name = "account_id")
@@ -51,7 +51,7 @@ public class User {
         this.lastName = lastName;
         this.address = address;
         this.email = email;
-        this.review = review;
+        //this.review = review;
         this.account = account;
         this.cardList = cardList;
     }
@@ -62,7 +62,7 @@ public class User {
         this.lastName = lastName;
         this.address = address;
         this.email = email;
-        this.review = review;
+        //this.review = review;
         this.account = account;
         this.cardList = cardList;
     }
@@ -106,13 +106,13 @@ public class User {
         this.email = email;
     }
 
-    public Review getReview() {
-        return review;
-    }
+//    public Review getReview() {
+//        return review;
+//    }
 
-    public void setReview(Review review) {
-        this.review = review;
-    }
+//    public void setReview(Review review) {
+//        this.review = review;
+//    }
 
     public Account getAccount() {
         return account;

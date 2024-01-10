@@ -30,6 +30,17 @@ export class RemoteService {
       })
     })
   }
+
+  postNewReview(reviewDto : ReviewDto, productId : number) {
+    return this.http.post(this.baseUrl+`/products/${productId}/reviews`,JSON.stringify(reviewDto),
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
 }
 
 
@@ -54,6 +65,12 @@ export interface ProductDto{
   stock : number
   discount : number
   description : string
+}
+
+export interface ReviewDto{
+  text : string
+  rating : number
+  accountName : string
 }
 
 export enum Category{
