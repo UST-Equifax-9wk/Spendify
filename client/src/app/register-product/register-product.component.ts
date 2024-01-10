@@ -18,12 +18,15 @@ export class RegisterProductComponent {
   remoteService : RemoteService
   accountName : string = "Walmart"
   productName : string = ""
-  price : number = 0
+  price : any
   category : string = ""
-  weight : number = -1
-  stock : number = -1
-  discount : number = 0
+  weight : any
+  stock : any
+  discount : any
   description : string = ""
+  reviewList: number[] = []
+  cartLookupList: number[] = []
+  showMore: boolean = false;
   
   constructor(router : Router, remoteService : RemoteService) {
     this.router = router
@@ -38,7 +41,10 @@ export class RegisterProductComponent {
       weight : this.weight,
       stock : this.stock,
       discount : this.discount,
-      description : this.description
+      description : this.description,
+      reviewList : this.reviewList,
+      cartLookupList: this.cartLookupList,
+      showMore: this.showMore
     }
     this.remoteService.postNewProduct(this.accountName, productDto).subscribe({
       next: (data) => {

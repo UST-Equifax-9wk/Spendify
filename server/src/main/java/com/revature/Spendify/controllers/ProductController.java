@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class ProductController {
@@ -20,5 +22,11 @@ public class ProductController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Product addProduct(@PathVariable String accountName, @RequestBody Product product) {
         return this.productService.addProductWithAccountName(accountName, product);
+    }
+
+    // In Progress
+    @GetMapping(path = "/{productCategory}/products")
+    public List<Product> productListByCategory(@PathVariable String productCategory) {
+        return productService.productListByCategory(Product.Category.valueOf(productCategory));
     }
 }
