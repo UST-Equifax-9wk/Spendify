@@ -1,11 +1,5 @@
 <p>List a product for sale:</p>
 
-<input type="text" id="productName" [(ngModel)] = "productName" placeholder="Product name">
-<br>
-
-<input type="text" id="producePrice" [(ngModel)] = "price" placeholder="Price">
-<br>
-
 <label for="productCategory">Category: </label>
     <select name="productCategory" id="productCategory" [(ngModel)]="category">
     <option value="TECH">TECH</option>
@@ -14,13 +8,19 @@
     <option value="OFFICE">OFFICE</option>
     </select><br>
 
-<input type="text" id="productWeight" [(ngModel)] = "weight" placeholder="Weight">
+<input type="text" id="productName" [(ngModel)] = "productName" placeholder="Product name">
+<br>
+
+<input type="text" id="producePrice" [(ngModel)] = "price" placeholder="Price" onkeypress="return /[0-9.]/i.test(event.key)">
+<br>
+
+<input type="text" id="productWeight" [(ngModel)] = "weight" placeholder="Weight" onkeypress="return /[0-9.]/i.test(event.key)">
 <br>
 
 <input type="text" id="productStock" [(ngModel)] = "stock" placeholder="Stock" onkeypress="return /[0-9]/i.test(event.key)">
 <br>
 
-<input type="text" id="productDiscount" [(ngModel)] = "discount" placeholder="Discount">
+<input type="text" id="productDiscount" [(ngModel)] = "discount" placeholder="Discount" onkeypress="return /[0-9.]/i.test(event.key)">
 <br>
 
 <input type="text" id="productDescription" [(ngModel)] = "description" placeholder="Description">
