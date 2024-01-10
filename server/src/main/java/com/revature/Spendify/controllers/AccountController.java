@@ -3,11 +3,7 @@ package com.revature.Spendify.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.revature.Spendify.DTOs.DistributorAccountDto;
 import com.revature.Spendify.DTOs.UserAccountDto;
@@ -64,5 +60,14 @@ public class AccountController {
             //return 422 for unknown exception
             else return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    @GetMapping("/user/{accountName}")
+    public ResponseEntity<Account> getUserAccount(@PathVariable String accountName){
+        //if no accountName return 417
+        if(accountName.isEmpty())return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        Account result = accountService.findAccountByName(accountName);
+        if(result==null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        else return new ResponseEntity<>(result,HttpStatus.OK);
     }
 }
