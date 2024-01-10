@@ -32,18 +32,28 @@ export class RemoteService {
       })
     })
   }
-  
+
+  postNewReview(reviewDto : ReviewDto, productId : number) {
+    return this.http.post(this.baseUrl+`/products/${productId}/reviews`,JSON.stringify(reviewDto),
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
   getListOfProducts(category: string): Observable<any> {
     return this.http.get(this.baseUrl + `/${category}/products`,
     {
       observe: 'response',
       withCredentials: true,
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type' : 'application/json'
       })
-    });
+    })
   }
-
 }
 
 
@@ -73,6 +83,12 @@ export interface ProductDto{
   cartLookupList: number[]
   // To allow collapsible attributes
   showMore:boolean 
+}
+
+export interface ReviewDto{
+  text : string
+  rating : number
+  accountName : string
 }
 
 export enum Category{
