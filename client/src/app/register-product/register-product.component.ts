@@ -24,6 +24,9 @@ export class RegisterProductComponent {
   stock : number = -1
   discount : number = 0
   description : string = ""
+  reviewList: number[] = []
+  cartLookupList: number[] = []
+  showMore: boolean = false;
   
   constructor(router : Router, remoteService : RemoteService) {
     this.router = router
@@ -38,7 +41,10 @@ export class RegisterProductComponent {
       weight : this.weight,
       stock : this.stock,
       discount : this.discount,
-      description : this.description
+      description : this.description,
+      reviewList : this.reviewList,
+      cartLookupList: this.cartLookupList,
+      showMore: this.showMore
     }
     this.remoteService.postNewProduct(this.accountName, productDto).subscribe({
       next: (data) => {
