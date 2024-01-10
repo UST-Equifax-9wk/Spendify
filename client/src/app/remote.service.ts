@@ -1,5 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,18 @@ export class RemoteService {
       })
     })
   }
+  
+  getListOfProducts(category: string): Observable<any> {
+    return this.http.get(this.baseUrl + `/${category}/products`,
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
 }
 
 
@@ -54,6 +68,11 @@ export interface ProductDto{
   stock : number
   discount : number
   description : string
+  // Added these two lists recently
+  reviewList: number[]
+  cartLookupList: number[]
+  // To allow collapsible attributes
+  showMore:boolean 
 }
 
 export enum Category{
