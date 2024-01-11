@@ -28,7 +28,7 @@ export class ReviewProductComponent {
   postReview() {
     let reviewDto : ReviewDto = {
       accountName : this.currentAccountName,
-      text : this.reviewText,
+      reviewText : this.reviewText,
       rating : this.rating
     }
     if(this.rating < 1 || this.rating > 5) {
