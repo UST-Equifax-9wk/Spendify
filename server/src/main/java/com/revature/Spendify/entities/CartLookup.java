@@ -20,7 +20,7 @@ public class CartLookup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column
-    private int cartLookUpId;
+    private Integer cartLookUpId;
 
     @Column(columnDefinition = "INTEGER DEFAULT 1")
     private int quantity;
@@ -29,10 +29,11 @@ public class CartLookup {
     //@JoinTable(name = "products",
             //joinColumns =
     @JoinColumn(name = "product_id")
-    @JsonBackReference("product")
+    //@JsonBackReference("product")
     private Product product;
 
     // Not sure about this relationship with cart
+
     @ManyToOne//(cascade = CascadeType.ALL)
     //@JoinTable(name = "carts",
     @JoinColumn(name = "cart_id")
@@ -55,11 +56,11 @@ public class CartLookup {
         this.cart = cart;
     }
 
-    public int getCartLookUpId() {
+    public Integer getCartLookUpId() {
         return cartLookUpId;
     }
 
-    public void setCartLookUpId(int cartLookUpId) {
+    public void setCartLookUpId(Integer cartLookUpId) {
         this.cartLookUpId = cartLookUpId;
     }
 

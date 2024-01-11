@@ -1,5 +1,6 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -30,7 +31,7 @@ public class User {
 
     @OneToOne
     @JoinColumn(name = "account_id")
-    @JsonManagedReference("account")
+    @JsonBackReference("account")
     private Account account;
 
     @OneToMany(mappedBy = "user")
