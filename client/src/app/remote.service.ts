@@ -118,6 +118,25 @@ export class RemoteService {
     )
   }
 
+  addCard(card:Card, name:string){
+    return this.http.post(this.baseUrl+"/card/"+name,JSON.stringify(card),
+    {observe:'response',
+    withCredentials:true,
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
+    )
+  }
+
+  getCards(accountName:string){
+    return this.http.get(this.baseUrl+"/card/"+accountName,
+    {observe:'response',
+    withCredentials:true,
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
+    )
+  }
 }
 
 
@@ -192,4 +211,11 @@ export interface Account{
   cartList:Array<Cart>,
   productList:Array<ProductDto>,
   orderList:Array<Order>
+}
+export interface Card{
+  cardId?:number,
+  name:string,
+  cardNumber:string,
+  expirationDate:string,
+  user:User
 }

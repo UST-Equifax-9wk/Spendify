@@ -6,10 +6,10 @@ import { LoginComponent } from './login/login.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductInformationComponent } from './product-information/product-information.component';
+import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { RegisterProductComponent } from './register-product/register-product.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ReviewProductComponent } from './review-product/review-product.component';
-
 
 export const routes: Routes = [
     {path: "navbar", component: NavbarComponent},
@@ -21,6 +21,7 @@ export const routes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "product-information/:productName", component: ProductInformationComponent},
     {path: "review-product", component: ReviewProductComponent},
-    {path:"browse-product", component: BrowseProductComponent}
+    {path:"browse-product", component: BrowseProductComponent},
+    {path:"payment-methods", component: PaymentMethodsComponent}
 ];
 
