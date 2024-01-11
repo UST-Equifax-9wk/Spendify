@@ -13,7 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "carts")
@@ -24,7 +23,7 @@ public class Cart {
     private int cartId;
 
     @Column(name = "is_active")
-    private boolean isActive;
+    private boolean active;
 
     @OneToOne(mappedBy = "cart")
     @JsonManagedReference("cart")
@@ -35,6 +34,7 @@ public class Cart {
     @JsonBackReference("cartList")
     private Account account;
 
+
 //    @OneToMany(mappedBy = "cart")
 //    @JsonManagedReference("cart-cartlookup")
 //    List<CartLookup> cartLookUpList;
@@ -42,16 +42,16 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
-        this.isActive = isActive;
+    public Cart(boolean active, Order order, Account account, List<CartLookup> cartLookUpList) {
+        this.active = active;
         this.order = order;
         this.account = account;
         //this.cartLookUpList = cartLookUpList;
     }
 
-    public Cart(int cartId, boolean isActive, Order order, Account account, List<CartLookup> cartLookUpList) {
+    public Cart(int cartId, boolean active, Order order, Account account, List<CartLookup> cartLookUpList) {
         this.cartId = cartId;
-        this.isActive = isActive;
+        this.active = active;
         this.order = order;
         this.account = account;
         //this.cartLookUpList = cartLookUpList;
@@ -66,11 +66,11 @@ public class Cart {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public Order getOrder() {
@@ -88,6 +88,7 @@ public class Cart {
     public void setAccount(Account account) {
         this.account = account;
     }
+
 
     //public List<CartLookup> getCartLookUpList() {
         //return cartLookUpList;

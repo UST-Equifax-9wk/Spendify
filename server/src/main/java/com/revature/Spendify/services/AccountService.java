@@ -1,5 +1,7 @@
 package com.revature.Spendify.services;
 
+import com.revature.Spendify.exceptions.CartException;
+import com.revature.Spendify.exceptions.NoAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,15 +24,16 @@ public class AccountService {
     private DistributorService distributorService;
     private PasswordEncoder passwordEncoder;
     private UserService userService;
-    
+    private CartService cartService;
 
     @Autowired
-    AccountService(PasswordRepository passwordRepository, AccountRepository accountRepository, UserService userService, DistributorService distributorService, PasswordEncoder passwordEncoder){
+    AccountService(CartService cartService, PasswordRepository passwordRepository, AccountRepository accountRepository, UserService userService, DistributorService distributorService, PasswordEncoder passwordEncoder){
         this.accountRepository=accountRepository;
         this.passwordRepository=passwordRepository;
         this.userService=userService;
         this.distributorService=distributorService;
         this.passwordEncoder = passwordEncoder;
+        this.cartService=cartService;
     }
 
 
@@ -69,6 +72,13 @@ public class AccountService {
         this.userService.createUser(userAccountDto.getUser());
         this.accountRepository.save(account);
         this.passwordRepository.save(password);
+        try {
+            cartService.createCart(userAccountDto.getAccountName());
+        } catch (NoAccountException e) {
+            throw new RuntimeException(e);
+        } catch (CartException e) {
+            throw new RuntimeException(e);
+        }
         UserAccountDto result = new UserAccountDto(userAccountDto.getUser(),userAccountDto.getAccountName(),"Hidden");
         return result;
     }
@@ -76,5 +86,13 @@ public class AccountService {
     public Account findAccountByName(String name){
         if(name==null)return null;
         return this.accountRepository.findByAccountName(name);
+    }
+
+
+    public Account retrieveAccount(String username) throws InvalidInputException {
+        if(username==null)return null;
+        Account account = this.accountRepository.findByAccountName(username);
+        if(account==null)throw new InvalidInputException(InvalidInputException.accountNotFound);
+        return account;
     }
 }

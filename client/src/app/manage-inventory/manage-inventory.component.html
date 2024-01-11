@@ -1,0 +1,33 @@
+<h2>Inventory Management</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of inventory; let i = index" [class.editing]="item.isEditing">
+      <td>{{ item.productName }}</td>
+      <td>{{ item.category }}</td>
+      <td>
+        <span *ngIf="!item.isEditing">{{ item.stock }}</span>
+        <input *ngIf="item.isEditing" type="number" [(ngModel)]="item.stock" (change)="validateField(item)" >
+      </td>
+      <td>
+        <span *ngIf="!item.isEditing">{{ item.price | currency: 'USD' }}</span>
+        <input *ngIf="item.isEditing" type="number" [(ngModel)]="item.price" appCurrencyFormat (change)="validateField(item)" >
+      </td>
+      <td class="edit-cell">
+        <div class="edit-button-container">
+            <button class="edit-button" (click)="updateInventory(this.item)">
+              {{ item.isEditing ? 'Save' : 'Edit' }}
+            </button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
