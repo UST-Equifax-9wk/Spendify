@@ -5,5 +5,12 @@
 <p>Description: {{currentProduct.description}}</p>
 <br>
 <p>Review:</p>
+<div *ngFor="let review of reviews">
+<p> User: {{review.accountName}}</p>
+<p> Rating: {{review.rating}}</p>    
+<p> Review: {{review.reviewText}}</p>
+<!--Just a placeholder until we how to organize the reviews-->
+<p>------------------------------</p>
+</div>
 <br>
 <p (click)="returnToBrowsingList()" [ngClass]="{'pointer-cursor': isClickable}">Return to browsing list</p>

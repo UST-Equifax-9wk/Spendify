@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { DistributorDto } from './distributor-service.service';
+import { DistributorDto } from './distributor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +33,28 @@ export class RemoteService {
     })
   }
 
+  getAccount(username : string): Observable<HttpResponse<Object>> {
+    return this.http.get(this.baseUrl+"/retrieve-account/" + username,{
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
+  updateProduct(productDto : ProductDto) {
+    return this.http.put(this.baseUrl+`/product`,JSON.stringify(productDto),
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
+
   login(accountName : string, password : string) {
     return this.http.post(this.baseUrl+`/login`,JSON.stringify({ accountName, password }),
     {
@@ -54,6 +75,7 @@ export class RemoteService {
       })
     })
   }
+  
 
   getListOfProducts(category: string): Observable<any> {
     return this.http.get(this.baseUrl + `/${category}/products`,
@@ -66,6 +88,16 @@ export class RemoteService {
     })
   }
 
+  getListOfReviews(id:number): Observable<any> {
+    return this.http.get(this.baseUrl + `/products/${id}/reviews`,
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
   getCart(name:string){
     return this.http.get(this.baseUrl+"/"+name+"/cart",
     {observe:'response',
@@ -141,6 +173,8 @@ export interface UserAccountDto{
 }
 
 export interface ProductDto{
+  isEditing?: boolean;
+  productId? : number
   productName : string
   price : number
   category : string
@@ -148,15 +182,15 @@ export interface ProductDto{
   stock : number
   discount : number
   description : string
-  // Added these two lists recently
-  reviewList: number[]
+  reviewList: ReviewDto[]
   cartLookupList: number[]
   // To allow collapsible attributes
-  showMore:boolean 
+  showMore?:boolean 
 }
 
 export interface ReviewDto{
-  text : string
+  // Changed from "text"
+  reviewText : string
   rating : number
   accountName : string
 }
