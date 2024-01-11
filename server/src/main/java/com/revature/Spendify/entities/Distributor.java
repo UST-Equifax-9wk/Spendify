@@ -1,5 +1,6 @@
 package com.revature.Spendify.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -26,7 +27,7 @@ public class Distributor {
 
     @OneToOne
     @JoinColumn(name = "account_id")
-    @JsonManagedReference("distributor")
+    @JsonBackReference("distributor")
     private Account account;
 
 

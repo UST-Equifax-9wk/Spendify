@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DistributorDto } from './distributor-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +67,7 @@ export class RemoteService {
   }
 
   getCart(name:string){
-    return this.http.get(this.baseUrl+"/"+"kylebreedlove"+"/cart",
+    return this.http.get(this.baseUrl+"/"+name+"/cart",
     {observe:'response',
     withCredentials:true,
       headers: new HttpHeaders({
@@ -76,7 +77,7 @@ export class RemoteService {
   }
   
   editCart(name:string,lookup:CartLookup){
-    return this.http.post(this.baseUrl+"/"+"kylebreedlove"+"/cart/edit",JSON.stringify(lookup),
+    return this.http.post(this.baseUrl+"/"+name+"/cart/edit",JSON.stringify(lookup),
     {observe:'response',
     withCredentials:true,
       headers: new HttpHeaders({
@@ -146,4 +147,15 @@ export enum Category{
   PETS,
   CLEANING,
   KITCHEN
+}
+
+export interface Account{
+  accountId:number,
+  accountName:string,
+  distributorFlag:boolean,
+  user:User,
+  distributor:DistributorDto,
+  cartList:Array<Cart>,
+  productList:Array<ProductDto>,
+  orderList:Array<Order>
 }

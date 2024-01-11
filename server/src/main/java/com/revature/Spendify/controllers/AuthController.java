@@ -1,6 +1,8 @@
 package com.revature.Spendify.controllers;
 
+import com.revature.Spendify.entities.Account;
 import com.revature.Spendify.entities.Password;
+import com.revature.Spendify.services.AccountService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +19,32 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class AuthController {
 
-    @Autowired
     private AuthenticationManager authenticationManager;
+    private AccountService accountService;
+    @Autowired
+    AuthController(AuthenticationManager authenticationManager, AccountService accountService){
+        this.authenticationManager=authenticationManager;
+        this.accountService=accountService;
+    }
     @PostMapping("/login")
-    public ResponseEntity<?> customLogin(@RequestBody Password password) {
+    public ResponseEntity<Account> customLogin(@RequestBody Password password) {
+        System.out.println("Firstin endpoint");
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(password.getAccountName(), password.getPassword())
         );
+        System.out.println("After authentication before contextholder");
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        Account account = accountService.findAccountByName(password.getAccountName());
+        System.out.println("Account: "+account.toString());
+        System.out.println("Before if statement");
+        if(authentication.getName()!=null){
+            System.out.println("In if");
+            return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
+        }
+        else{
+            System.out.println("In else");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 

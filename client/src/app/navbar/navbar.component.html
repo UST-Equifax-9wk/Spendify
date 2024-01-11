@@ -5,9 +5,8 @@
         <a routerLink="register-user" id="register-user">Register User</a>
         <a routerLink="distributor-register" id="register">Distributor Registration</a>
         <a routerLink="browse-product" id="browse-product">Browse Products</a>
-        <!-- <a *ngIf="currentAccount.accountName!=''" routerLink="cart" id="cart">Cart</a> -->
-        <a routerLink="cart" id="cart">Cart update after login</a>
-        <!-- switch to use ngif after logging in sets current account -->
+        <a *ngIf="currentAccount.accountName!=''" routerLink="cart" id="cart">Cart</a>
+        
     </div>
 </div>
 <router-outlet></router-outlet>
