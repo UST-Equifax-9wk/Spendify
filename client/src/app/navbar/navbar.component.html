@@ -7,6 +7,7 @@
         <a routerLink="browse-product" id="browse-product">Browse Products</a>
         <a *ngIf="currentAccount.accountName!=''" routerLink="cart" id="cart">Cart</a>
         <a *ngIf="currentAccount.accountName!='' && currentAccount.distributorFlag" routerLink="manage-inventory" id="manage-inventory">Inventory</a>
+        <a *ngIf="currentAccount.accountName!='' && currentAccount.distributorFlag" routerLink="register-product" id="register-product">Post Product</a>
         
     </div>
 </div>

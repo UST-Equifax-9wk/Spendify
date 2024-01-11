@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Category, ProductDto, RemoteService } from '../remote.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CurrentAccountService } from '../current-account.service';
+import { ProductDto, RemoteService } from '../remote.service';
 
 @Component({
   selector: 'app-register-product',
@@ -16,7 +17,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RegisterProductComponent {
   router : Router
   remoteService : RemoteService
-  accountName : string = "Walmart"
+  currentAccountService : CurrentAccountService
+  accountName : string = ""
   productName : string = ""
   price : any
   category : string = ""
@@ -28,8 +30,9 @@ export class RegisterProductComponent {
   cartLookupList: number[] = []
   showMore: boolean = false;
   
-  constructor(router : Router, remoteService : RemoteService) {
+  constructor(router : Router, remoteService : RemoteService, currentAccountService : CurrentAccountService) {
     this.router = router
+    this.currentAccountService = currentAccountService
     this.remoteService = remoteService
   }
 
@@ -46,7 +49,7 @@ export class RegisterProductComponent {
       cartLookupList: this.cartLookupList,
       showMore: this.showMore
     }
-    this.remoteService.postNewProduct(this.accountName, productDto).subscribe({
+    this.remoteService.postNewProduct(this.currentAccountService.accountName, productDto).subscribe({
       next: (data) => {
         alert(`${this.productName} has successfully been listed for sale.`)
         console.log(data)
