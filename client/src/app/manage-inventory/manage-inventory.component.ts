@@ -25,7 +25,6 @@ validateField(_t13: ProductDto) {
 
   inventory: ProductDto[];
   remoteService : RemoteService
-  accountName : string = "Walmart"
   currentAccountService: CurrentAccountService;
 
   constructor(currentAccountService: CurrentAccountService, private router : Router, remoteService : RemoteService) {
@@ -36,11 +35,11 @@ validateField(_t13: ProductDto) {
 
   ngOnInit(): void {
     // Here you would typically fetch the inventory data from a service
-    console.log(this.accountName)
-    this.remoteService.getAccount(this.accountName).subscribe({
+    //console.log(this.currentAccountService.getDistributorAccount());
+    this.remoteService.getAccount(this.currentAccountService.accountName).subscribe({
       next: (response) => {
       let account = JSON.parse(JSON.stringify(response.body ? response.body : []));
-      console.log(account);
+      //console.log(account);
       account.productList.forEach((product: ProductDto) => {
         this.inventory.push(JSON.parse(JSON.stringify(product)));
       })
