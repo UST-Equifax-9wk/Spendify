@@ -1,0 +1,18 @@
+<p>Your Cart</p>
+<div *ngIf="currentCart.cart.cartId!=0">test
+    <div *ngFor="let cartlookup of currentCart.productList">test2
+        <h3>{{cartlookup.product.productName}}</h3>
+        <p>$ {{cartlookup.product.price}} USD</p>
+        <p> Quantity: {{cartlookup.quantity}}</p>
+        <button (click)="showMoreInfo(cartlookup.product)" type="button">
+            {{!cartlookup.product.showMore?"Show More":"Show Less"}}
+        </button>
+        <button (click)="removeProduct(cartlookup)">Remove From Cart</button>
+        <button (click)="changeQuantity(cartlookup)">Change Quantity</button>
+        <ng-container *ngIf="cartlookup.product.showMore">
+            <p> Weight: {{cartlookup.product.weight}} lbs</p>
+            <p> Description: {{cartlookup.product.description}}</p>
+        </ng-container>
+
+    </div>
+</div>
