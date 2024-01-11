@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CartLookup, ProductDto, RemoteService } from '../remote.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CurrentAccountService } from '../current-account.service';
+import { CurrentProductService } from '../current-product.service';
 
 @Component({
   selector: 'app-browse-product',
@@ -17,15 +18,16 @@ export class BrowseProductComponent {
 
   router:Router;
   remote:RemoteService;
+  currentProduct:CurrentProductService;
   category:string = "";
   products:ProductDto[];
   currentAccount:CurrentAccountService;
-  //ShowMore:boolean = true;
-  //visible:boolean = false;
+  isClickable:boolean = true;
 
-  constructor(router:Router, remote: RemoteService, current:CurrentAccountService) {
+  constructor(router:Router, remote: RemoteService, current:CurrentAccountService,currentProduct: CurrentProductService) {
     this.router = router;
     this.remote = remote;
+    this.currentProduct = currentProduct;
     this.products = [];
     this.currentAccount=current;
   }
@@ -45,8 +47,11 @@ export class BrowseProductComponent {
 
   showMoreInfo(product: ProductDto) {
     product.showMore = !product.showMore
-    //this.ShowMore = !this.ShowMore
-    //this.visible = !this.visible
+  }
+
+  productInformation(product:ProductDto) {
+    this.currentProduct.setCurrentProduct(product);
+    this.router.navigate([`/product-information/${product.productName}`]);
   }
 
   addToCart(product:ProductDto){

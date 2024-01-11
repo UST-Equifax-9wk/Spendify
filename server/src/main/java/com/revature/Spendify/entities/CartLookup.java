@@ -33,9 +33,11 @@ public class CartLookup {
     private Product product;
 
     // Not sure about this relationship with cart
-    @ManyToOne
+
+    @ManyToOne//(cascade = CascadeType.ALL)
+    //@JoinTable(name = "carts",
     @JoinColumn(name = "cart_id")
-//    @JsonBackReference("cart-cartlookup")
+    //@JsonBackReference("cart-cartlookup")
     private Cart cart;
 
     public CartLookup() {

@@ -1,0 +1,32 @@
+<div class="login">
+  <div class="login-child"></div>
+  <div class="login-inner">
+    <div class="spendify-wrapper">
+      <div class="spendify">Spendify</div>
+    </div>
+  </div>
+  <div class="login-item"></div>
+  <input class="frame-input" type="text" [(ngModel)]="username" name="username" />
+
+  <div class="username-wrapper">
+    <div class="username">Username</div>
+  </div>
+  <input class="login-child1" type="password" [(ngModel)]="password" name="password" />
+
+  <div class="password-wrapper">
+    <div class="username">Password</div>
+  </div>
+  <div class="log-in-to-spendify-wrapper">
+    <b class="log-in-to">Log in to Spendify</b>
+  </div>
+  <div class="frame-div">
+    <img class="frame-child" alt="" src="./public/line-1.svg" />
+  </div>
+  <div class="login-inner1">
+    <img class="frame-child" alt="" src="./public/line-1.svg" />
+  </div>
+  <button class="sign-in-wrapper" (click)="signIn()">
+    <b class="sign-in">Sign in</b>
+  </button>
+  <a class="sign-up-for" href="/register-user">Sign up for Spendify</a>
+</div>

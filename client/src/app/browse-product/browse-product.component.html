@@ -10,7 +10,8 @@
 
 <div *ngIf="category">
     <div *ngFor="let product of products">
-        <h3>{{product.productName}}</h3>
+        <h3 (click)="productInformation(product)" [ngClass]="{'pointer-cursor': isClickable}">
+            {{product.productName}}</h3>
         <p>$ {{product.price}} USD</p>
         <p> Stock: {{product.stock}}</p>
         <button (click)="showMoreInfo(product)" type="button">
@@ -24,8 +25,3 @@
 
     </div>
 </div>
-
-<!--
-<p>{{product.weight}} lbs</p>
-        <p>stock: {{product.stock}}</p>
-        <p>Description: {{product.description}}</p> -->

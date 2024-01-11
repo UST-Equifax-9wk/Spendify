@@ -27,7 +27,8 @@ public class Cart {
     @JsonBackReference("cartList")
     private Account account;
 
-//    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
+
+//    @OneToMany(mappedBy = "cart")
 //    @JsonManagedReference("cart-cartlookup")
 //    List<CartLookup> cartLookUpList;
 
@@ -38,7 +39,7 @@ public class Cart {
         this.active = active;
         this.order = order;
         this.account = account;
-//        this.cartLookUpList = cartLookUpList;
+        //this.cartLookUpList = cartLookUpList;
     }
 
     public Cart(int cartId, boolean active, Order order, Account account, List<CartLookup> cartLookUpList) {
@@ -46,7 +47,7 @@ public class Cart {
         this.active = active;
         this.order = order;
         this.account = account;
-//        this.cartLookUpList = cartLookUpList;
+        //this.cartLookUpList = cartLookUpList;
     }
 
     public int getCartId() {
@@ -81,11 +82,12 @@ public class Cart {
         this.account = account;
     }
 
-//    public List<CartLookup> getCartLookUpList() {
-//        return cartLookUpList;
-//    }
-//
-//    public void setCartLookUpList(List<CartLookup> cartLookUpList) {
-//        this.cartLookUpList = cartLookUpList;
-//    }
+
+    //public List<CartLookup> getCartLookUpList() {
+        //return cartLookUpList;
+   // }
+
+    //public void setCartLookUpList(List<CartLookup> cartLookUpList) {
+        //this.cartLookUpList = cartLookUpList;
+    //}
 }
