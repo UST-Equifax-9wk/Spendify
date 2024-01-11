@@ -45,7 +45,6 @@ public class AccountController {
     @PostMapping(path="/create-account/user")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<UserAccountDto> createUserAccount(@RequestBody UserAccountDto userAccountDto){
-        System.out.println("Bark");
         //if not request body doesn't match return 417
         if(userAccountDto==null)return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         try {

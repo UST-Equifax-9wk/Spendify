@@ -59,25 +59,31 @@ public class CartService {
     public CartWithProductsDto editCart(CartLookup cartLookup, String accountName) throws CartException, NoAccountException {
         if(cartLookup.getProduct()==null||cartLookup.getQuantity()<0)throw new CartException(CartException.cartLookupMissingInfo);
         CartWithProductsDto cart = findActiveCart(accountName);
+        cartLookup.setCartLookUpId(null);
         //ind is the index of the cartLookup containing the same product to be added, returns -1 if not containing target
         int ind = cartContainsProduct(cart,cartLookup.getProduct());
         if(ind>=0){
-            System.out.println("ind FOUND");
             if (cartLookup.getQuantity() > 0) {
+                System.out.println("in ind 1+ quantity");
                 cart.getProductList().get(ind).setQuantity(cartLookup.getQuantity());
                 cartLookupRepository.save(cart.getProductList().get(ind));
             }
             else {
+                System.out.println("in ind 0 quantity");
                 cartLookupRepository.delete(cart.getProductList().get(ind));
                 cart.getProductList().remove(ind);
             }
         }
         else{
-            System.out.println("ind not FOUND");
             if(cartLookup.getQuantity()>0){
+                System.out.println("in else 1+ quantity");
                 cartLookup.setCart(cart.getCart());
                 CartLookup result = cartLookupRepository.save(cartLookup);
                 cart.getProductList().add(result);
+            }
+            else{
+                System.out.println("in else 0 quantity");
+
             }
 
         }
@@ -102,10 +108,7 @@ public class CartService {
 
     public int cartContainsProduct(CartWithProductsDto cart, Product product){
         List<CartLookup> list = cart.getProductList();
-        System.out.println("contains");
-        System.out.println(product.toString());
         for (int i = 0; i<list.size();i++){
-            System.out.println(list.get(i).getProduct().toString());
             if(list.get(i).getProduct().getProductId()==product.getProductId())return i;
         }
         return -1;

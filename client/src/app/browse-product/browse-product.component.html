@@ -16,7 +16,7 @@
         <button (click)="showMoreInfo(product)" type="button">
             {{!product.showMore?"Show More":"Show Less"}}
         </button>
-
+        <button (click)="addToCart(product)">Add to Cart</button>
         <ng-container *ngIf="product.showMore">
             <p> Weight: {{product.weight}} lbs</p>
             <p> Description: {{product.description}}</p>

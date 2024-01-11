@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { CurrentAccountService } from '../current-account.service';
 
 
 @Component({
@@ -10,4 +11,8 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  currentAccount: CurrentAccountService;
+  constructor(currentAccount:CurrentAccountService){
+    this.currentAccount=currentAccount;
+  }
 }

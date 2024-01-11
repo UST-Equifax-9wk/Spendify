@@ -44,9 +44,48 @@ export class RemoteService {
     });
   }
 
+  getCart(name:string){
+    return this.http.get(this.baseUrl+"/"+"kylebreedlove"+"/cart",
+    {observe:'response',
+    withCredentials:true,
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
+    )
+  }
+  
+  editCart(name:string,lookup:CartLookup){
+    return this.http.post(this.baseUrl+"/"+"kylebreedlove"+"/cart/edit",JSON.stringify(lookup),
+    {observe:'response',
+    withCredentials:true,
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
+    )
+  }
+
 }
 
 
+
+
+export interface CartWithProducts{
+  cart:Cart;
+  productList:Array<CartLookup>;
+}
+export interface CartLookup{
+  cartLookUpId:number;
+  quantity:number;
+  product:ProductDto;
+}
+export interface Cart{
+  cartId:number;
+  active:boolean;
+  order:Order;
+}
+export interface Order{
+
+}
 export interface User{
   firstName:string;
   lastName:string;

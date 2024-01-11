@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-.input-label{
+label{
     font-size: 20px;
     color: white;
 }
@@ -54,6 +54,10 @@ h1, h2, h3, h4, h5, h6 {
     color: rgb(79, 189, 79);
     margin-bottom: 10px;
     margin-top: 50px; /* Adjust the margin-top value as needed */
+}
+p{ 
+    font-size: 20px;
+    color: white;
 }
     
 

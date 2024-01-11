@@ -58,7 +58,7 @@ public class CartLookup {
         return cartLookUpId;
     }
 
-    public void setCartLookUpId(int cartLookUpId) {
+    public void setCartLookUpId(Integer cartLookUpId) {
         this.cartLookUpId = cartLookUpId;
     }
 
