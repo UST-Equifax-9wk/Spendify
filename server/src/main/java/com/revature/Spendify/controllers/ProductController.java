@@ -39,6 +39,7 @@ public class ProductController {
     
     // In Progress
     @GetMapping(path = "/{productCategory}/products")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Product> productListByCategory(@PathVariable String productCategory) {
         return productService.productListByCategory(Product.Category.valueOf(productCategory));
     }

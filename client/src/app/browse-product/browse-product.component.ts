@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CartLookup, ProductDto, RemoteService } from '../remote.service';
+import { CartLookup, ProductDto, RemoteService, ReviewDto } from '../remote.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CurrentAccountService } from '../current-account.service';
 import { CurrentProductService } from '../current-product.service';
@@ -35,7 +35,6 @@ export class BrowseProductComponent {
   browseProducts() {
     this.remote.getListOfProducts(this.category).subscribe({
       next:(data) => {
-        console.log(data)
         this.products = data.body
       },
       error:(error:HttpErrorResponse) => {

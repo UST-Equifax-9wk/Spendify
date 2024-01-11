@@ -88,6 +88,16 @@ export class RemoteService {
     })
   }
 
+  getListOfReviews(id:number): Observable<any> {
+    return this.http.get(this.baseUrl + `/products/${id}/reviews`,
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
   getCart(name:string){
     return this.http.get(this.baseUrl+"/"+name+"/cart",
     {observe:'response',
@@ -153,15 +163,15 @@ export interface ProductDto{
   stock : number
   discount : number
   description : string
-  // Added these two lists recently
-  reviewList: number[]
+  reviewList: ReviewDto[]
   cartLookupList: number[]
   // To allow collapsible attributes
   showMore?:boolean 
 }
 
 export interface ReviewDto{
-  text : string
+  // Changed from "text"
+  reviewText : string
   rating : number
   accountName : string
 }
