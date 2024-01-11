@@ -8,6 +8,7 @@ import { ReviewProductComponent } from './review-product/review-product.componen
 import { BrowseProductComponent } from './browse-product/browse-product.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductInformationComponent } from './product-information/product-information.component';
+import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 
 export const routes: Routes = [
     {path: "navbar", component: NavbarComponent},
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "product-information/:productName", component: ProductInformationComponent},
     {path: "review-product", component: ReviewProductComponent},
-    {path:"browse-product", component: BrowseProductComponent}
+    {path:"browse-product", component: BrowseProductComponent},
+    {path:"payment-methods", component: PaymentMethodsComponent}
 ];
 
