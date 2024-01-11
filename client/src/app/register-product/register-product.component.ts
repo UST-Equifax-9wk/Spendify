@@ -27,6 +27,7 @@ export class RegisterProductComponent {
   reviewList: number[] = []
   cartLookupList: number[] = []
   showMore: boolean = false;
+  biddable : boolean = false;
   
   constructor(router : Router, remoteService : RemoteService) {
     this.router = router

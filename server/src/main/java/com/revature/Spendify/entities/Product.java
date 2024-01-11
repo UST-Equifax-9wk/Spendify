@@ -45,6 +45,16 @@ public class Product {
     @Column
     private String description;
 
+    @Column
+    private Boolean biddable;
+
+    @Column
+    private Integer threshold;
+
+    @ManyToOne
+    @JoinColumn(name = "current_bidder_account_id")
+    private Account currentBidder;
+
     @OneToMany(mappedBy = "product")
     @JsonManagedReference("reviewList-product")
     private List<Review> reviewList;

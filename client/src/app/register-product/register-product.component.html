@@ -26,4 +26,13 @@
 <input type="text" id="productDescription" [(ngModel)] = "description" placeholder="Description">
 <br>
 
+<input type="checkbox" id="biddableCheckbox" [(ngModel)] = "biddable">
+<label for="true">Biddable?</label>
+<br>
+
+<div *ngIf="biddable">
+    
+
+</div>
+
 <button (click)="postProduct()">Post product for sale!</button>
