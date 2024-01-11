@@ -14,6 +14,9 @@ import { ProductDto, RemoteService } from '../remote.service';
   styleUrl: './manage-inventory.component.css'
 })
 export class ManageInventoryComponent {
+showReviews(_t13: ProductDto) {
+throw new Error('Method not implemented.');
+}
 validateField(_t13: ProductDto) {
   if (Number(_t13.price) < 0) {
     _t13.price = 0;
