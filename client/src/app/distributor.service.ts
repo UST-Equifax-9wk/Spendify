@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 
-export class DistributorServiceService {
+export class DistributorService {
   httpClient: HttpClient;
   baseUrl: string;
   httpOptions = {
