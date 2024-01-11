@@ -69,7 +69,6 @@ public class AccountController {
     @PostMapping(path="/create-account/user")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<UserAccountDto> createUserAccount(@RequestBody UserAccountDto userAccountDto){
-        System.out.println("Bark");
         //if not request body doesn't match return 417
         if(userAccountDto==null)return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
         try {
@@ -84,5 +83,14 @@ public class AccountController {
             //return 422 for unknown exception
             else return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    @GetMapping("/user/{accountName}")
+    public ResponseEntity<Account> getUserAccount(@PathVariable String accountName){
+        //if no accountName return 417
+        if(accountName.isEmpty())return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        Account result = accountService.findAccountByName(accountName);
+        if(result==null)return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        else return new ResponseEntity<>(result,HttpStatus.OK);
     }
 }

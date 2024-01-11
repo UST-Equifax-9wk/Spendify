@@ -54,9 +54,9 @@ public class Product {
     @JsonBackReference("productList")
     private Account account;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JsonManagedReference("product")
-    private List<CartLookup> cartLookupList;
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+//    @JsonManagedReference("product")
+//    private List<CartLookup> cartLookupList;
     public Product() {
     }
 
@@ -171,4 +171,21 @@ public class Product {
 //    public void setCartLookupList(List<CartLookup> cartLookupList) {
 //        this.cartLookupList = cartLookupList;
 //    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", weight=" + weight +
+                ", stock=" + stock +
+                ", discount=" + discount +
+                ", description='" + description + '\'' +
+                ", reviewList=" + reviewList +
+                ", account=" + account +
+//                ", cartLookupList=" + cartLookupList +
+                '}';
+    }
 }

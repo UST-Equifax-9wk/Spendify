@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CurrentAccountService } from '../current-account.service';
 import { DistributorService, NewDistributorDto } from '../distributor.service';
 import { PasswordStrengthDirective } from '../password-strength.directive';
-
 
 @Component({
   selector: 'app-distributor-register',
@@ -16,15 +16,17 @@ import { PasswordStrengthDirective } from '../password-strength.directive';
 export class DistributorRegisterComponent{
 
   distributorService: DistributorService;
+  currentAccountService: CurrentAccountService;
   name: string;
   email: string;
   password: string;
 
-  constructor(private router: Router, distributorService: DistributorService) { 
+  constructor(private router: Router, currentAccountService: CurrentAccountService, distributorService: DistributorService) { 
     this.name = '';
     this.email = '';
     this.password = '';
     this.distributorService = distributorService;
+    this.currentAccountService = currentAccountService;
   }
 
 
@@ -41,6 +43,8 @@ export class DistributorRegisterComponent{
     this.distributorService.registerDistributor(newDistributor)
     .subscribe({
       next: data => {
+        let res = data.body as NewDistributorDto;
+        this.currentAccountService.setDistributorAccount(res.distributor, res.accountName);
         console.log(data);
       },
       error: error => {

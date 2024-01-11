@@ -27,11 +27,11 @@ public class Account {
     private boolean distributorFlag;
 
     @OneToOne(mappedBy = "account")
-    @JsonBackReference("account")
+    @JsonManagedReference("account")
     private User user;
 
     @OneToOne(mappedBy = "account")
-    @JsonBackReference("distributor")
+    @JsonManagedReference("distributor")
     private Distributor distributor;
 
     @OneToMany(mappedBy = "account")
@@ -131,5 +131,19 @@ public class Account {
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", accountName='" + accountName + '\'' +
+                ", distributorFlag=" + distributorFlag +
+                ", user=" + user +
+                ", distributor=" + distributor +
+                ", cartList=" + cartList +
+                ", productList=" + productList +
+                ", orderList=" + orderList +
+                '}';
     }
 }

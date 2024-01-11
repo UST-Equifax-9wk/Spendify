@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DistributorDto } from './distributor.service';
 
 @Injectable({
   providedIn: 'root'
@@ -86,9 +87,49 @@ export class RemoteService {
       })
     })
   }
+
+  getCart(name:string){
+    return this.http.get(this.baseUrl+"/"+name+"/cart",
+    {observe:'response',
+    withCredentials:true,
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
+    )
+  }
+  
+  editCart(name:string,lookup:CartLookup){
+    return this.http.post(this.baseUrl+"/"+name+"/cart/edit",JSON.stringify(lookup),
+    {observe:'response',
+    withCredentials:true,
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
+    )
+  }
+
 }
 
 
+
+
+export interface CartWithProducts{
+  cart:Cart;
+  productList:Array<CartLookup>;
+}
+export interface CartLookup{
+  cartLookUpId:number;
+  quantity:number;
+  product:ProductDto;
+}
+export interface Cart{
+  cartId:number;
+  active:boolean;
+  order:Order;
+}
+export interface Order{
+
+}
 export interface User{
   firstName:string;
   lastName:string;
@@ -130,4 +171,15 @@ export enum Category{
   PETS,
   CLEANING,
   KITCHEN
+}
+
+export interface Account{
+  accountId:number,
+  accountName:string,
+  distributorFlag:boolean,
+  user:User,
+  distributor:DistributorDto,
+  cartList:Array<Cart>,
+  productList:Array<ProductDto>,
+  orderList:Array<Order>
 }
