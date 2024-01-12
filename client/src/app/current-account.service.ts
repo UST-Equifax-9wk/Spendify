@@ -24,6 +24,7 @@ export class CurrentAccountService {
     this.accountName=name;
     this.distributorFlag=false;
     console.log("Current user set to: ",this.currentUser.getCurrentUser())
+    console.log("Current username is: ",this.accountName)
    }
    getUserAccount():UserAccountDto{
     let dto:UserAccountDto={

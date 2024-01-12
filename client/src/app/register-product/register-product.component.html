@@ -6,6 +6,10 @@
     <option value="PETS">PETS</option>
     <option value="KITCHEN">KITCHEN</option>
     <option value="OFFICE">OFFICE</option>
+    <option value="GROCERIES">GROCERIES</option>
+    <option value="CLEANING">CLEANING</option>
+    <option value="CLOTHES">CLOTHES</option>
+    <option value="FOOTWEAR">FOOTWEAR</option>
     </select><br>
 
 <input type="text" id="productName" [(ngModel)] = "productName" placeholder="Product name">
@@ -17,13 +21,27 @@
 <input type="text" id="productWeight" [(ngModel)] = "weight" placeholder="Weight" onkeypress="return /[0-9.]/i.test(event.key)">
 <br>
 
-<input type="text" id="productStock" [(ngModel)] = "stock" placeholder="Stock" onkeypress="return /[0-9]/i.test(event.key)">
-<br>
-
 <input type="text" id="productDiscount" [(ngModel)] = "discount" placeholder="Discount" onkeypress="return /[0-9.]/i.test(event.key)">
 <br>
 
 <input type="text" id="productDescription" [(ngModel)] = "description" placeholder="Description">
 <br>
+
+<!--div *ngIf="!biddable"-->
+    <input [disabled]="biddable" type="text" id="productStock" [(ngModel)] = "stock" placeholder="Stock" onkeypress="return /[0-9]/i.test(event.key)" >
+    <br>
+
+    <input [disabled]="biddable" type="text" id="productThreshold" [(ngModel)] = "threshold" placeholder="Low-stock threshold" onkeypress="return /[0-9]/i.test(event.key)">
+    <br>
+<!--/div-->
+
+<input type="checkbox" id="biddableCheckbox" [(ngModel)] = "biddable" onclick="document.getElementById('productThreshold').value = ''; document.getElementById('productStock').value='';">
+<label for="true">Make this item biddable</label>
+<br>
+
+<div *ngIf="biddable">
+    <input type="text" id="productBidPrice" [(ngModel)] = "currentBid" placeholder="Starting bid" onkeypress="return /[0-9.]/i.test(event.key)">
+    <br>
+</div>
 
 <button (click)="postProduct()">Post product for sale!</button>

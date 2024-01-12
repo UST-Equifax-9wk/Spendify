@@ -1,0 +1,24 @@
+<p>payment-methods works!</p>
+
+<ng-container *ngIf="cards.length==0"><h1>You do not have any cards added.</h1></ng-container>
+<ng-container *ngIf="cards.length>0">
+    <h1>Your existing cards</h1>
+    <div *ngFor="let card of cards">
+        <p>Card Number: ***-{{card.cardNumber.substring(card.cardNumber.length-4)}}  Expiration: {{card.expirationDate}}  Name On Card: {{card.name}}</p>
+    </div>
+</ng-container>
+<h1>Add a new Card:</h1>
+<label class="input-label">Card Number:</label>
+<br>
+<input type="text" class="text-input" id="cardNumber" [(ngModel)]="cardNumber">
+<br>
+<label class="input-label">Card Expiration:</label>
+<br>
+<input type="text" class="text-input" id="cardExpiration" [(ngModel)]="cardExpiration">
+<br>
+<label class="input-label">Name on card:</label>
+<br>
+<input type="text" class="text-input" id="cardName" [(ngModel)]="cardName">
+<br>
+<br>
+<button type="submit" class="submit-button" id="addCard" (click)="addCard()">Add Card</button>

@@ -21,6 +21,7 @@ export class RegisterProductComponent {
   accountName : string = ""
   productName : string = ""
   price : any
+  threshold : any
   category : string = ""
   weight : any
   stock : any
@@ -29,25 +30,36 @@ export class RegisterProductComponent {
   reviewList: ReviewDto[] = []
   cartLookupList: number[] = []
   showMore: boolean = false;
+  biddable : boolean = false;
+  currentBid : any
   
   constructor(router : Router, remoteService : RemoteService, currentAccountService : CurrentAccountService) {
     this.router = router
     this.currentAccountService = currentAccountService
     this.remoteService = remoteService
+    this.currentAccountService = currentAccountService;
   }
 
   postProduct() {
+    if(this.biddable == true) {
+      this.stock = 1
+      this.threshold = 0
+    }
+    this.accountName = this.currentAccountService.accountName;
     let productDto : ProductDto = {
       productName : this.productName,
       price : this.price,
       category : this.category,
       weight : this.weight,
       stock : this.stock,
+      biddable : this.biddable,
       discount : this.discount,
       description : this.description,
       reviewList : this.reviewList,
       cartLookupList: this.cartLookupList,
-      showMore: this.showMore
+      showMore: this.showMore,
+      threshold : this.threshold,
+      currentBid : this.currentBid
     }
     this.remoteService.postNewProduct(this.currentAccountService.accountName, productDto).subscribe({
       next: (data) => {
