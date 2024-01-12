@@ -1,32 +1,30 @@
 package com.revature.Spendify.services;
 
-import com.revature.Spendify.entities.Order;
-import com.revature.Spendify.entities.User;
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-import jakarta.validation.constraints.Email;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.nio.charset.StandardCharsets;
+
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.ITemplateEngine;
-import org.thymeleaf.context.Context;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
-import java.nio.charset.StandardCharsets;
+import com.revature.Spendify.entities.Order;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 
 @Service
 public class EmailService {
 
-    @Autowired
+    //@Autowired
     private JavaMailSender emailSender;
-    @Autowired
+    //@Autowired
     private TemplateEngine templateEngine;
 
     private UserService userService;
 
 
-    @Autowired
+    //@Autowired
     public EmailService(UserService userService){
         this.userService = userService;
     }
