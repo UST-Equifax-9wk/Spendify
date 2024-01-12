@@ -18,15 +18,15 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class EmailService {
 
-    @Autowired
+    //@Autowired
     private JavaMailSender emailSender;
-    @Autowired
+    //@Autowired
     private TemplateEngine templateEngine;
 
     private UserService userService;
 
 
-    @Autowired
+    //@Autowired
     public EmailService(UserService userService){
         this.userService = userService;
     }

@@ -77,8 +77,30 @@ export class RemoteService {
   }
   
 
-  getListOfProducts(category: string): Observable<any> {
-    return this.http.get(this.baseUrl + `/${category}/products`,
+  getListOfProductsByCategory(category: string): Observable<any> {
+    return this.http.get(this.baseUrl + `/${category}/products/productCategory`,
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
+  getListOfProductsByProductName(productName: string):Observable<any> {
+    return this.http.get(this.baseUrl + `/${productName}/products/productName`, 
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
+  getListOfProductsByCategoryAndProductName(category:string, productName:string):Observable<any> {
+    return this.http.get(this.baseUrl + `/${category}/${productName}/products/both`, 
     {
       observe: 'response',
       withCredentials: true,
@@ -98,6 +120,7 @@ export class RemoteService {
       })
     })
   }
+
   getCart(name:string){
     return this.http.get(this.baseUrl+"/"+name+"/cart",
     {observe:'response',
