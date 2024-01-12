@@ -80,4 +80,11 @@ public class ProductService {
         Product product = opt.get();
         return product.getCurrentBidder();
     }
+    public List<Product> productListByProductName(String productName) {
+        return productRepository.findByproductNameContaining(productName);
+    }
+
+    public List<Product> productListByCategoryAndProductName(String category, String productName) {
+        return productRepository.findByCategoryProductName(category, productName);
+    }
 }

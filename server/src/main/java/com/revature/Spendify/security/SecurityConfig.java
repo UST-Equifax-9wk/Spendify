@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("endpointtoberestriced").hasRole("USER")
                         .requestMatchers("endpointtoberestriced").hasRole("DISTRIBUTOR")
-                        .requestMatchers("/login","/create-account/user", "/create-account/distributor", "/*/products", "/*/cart","/*/cart/edit","/user/*", "/products/*/reviews", "/products/*/bid", "/card", "/card/*","/retrieve-account/*", "/retrieve-account/*/products","/product")
+                        .requestMatchers("/login","/create-account/user", "/create-account/distributor", "/*/products/productCategory", "/*/products/productName", "/*/*/products/both", "/*/cart","/*/cart/edit","/user/*", "/products/*/reviews", "products/*/bid", "/card", "/card/*","/retrieve-account/*", "/retrieve-account/*/products","/product")
                         .permitAll()
                         .anyRequest().authenticated()
                 )

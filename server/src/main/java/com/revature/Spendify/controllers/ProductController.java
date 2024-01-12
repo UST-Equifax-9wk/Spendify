@@ -54,10 +54,22 @@ public class ProductController {
     }
 
     // In Progress
-    @GetMapping(path = "/{productCategory}/products")
+    @GetMapping(path = "/{productCategory}/products/productCategory")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public List<Product> productListByCategory(@PathVariable String productCategory) {
         return productService.productListByCategory(Product.Category.valueOf(productCategory));
+    }
+
+    @GetMapping(path = "/{productName}/products/productName")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public List<Product> productListByProductName(@PathVariable String productName) {
+        return productService.productListByProductName(productName);
+    }
+
+    @GetMapping(path = "/{productCategory}/{productName}/products/both")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public List<Product> productListByCategoryAndProductName(@PathVariable String productCategory, @PathVariable String productName) {
+        return productService.productListByCategoryAndProductName(productCategory, productName);
     }
 
     @ExceptionHandler(InvalidBidException.class)
