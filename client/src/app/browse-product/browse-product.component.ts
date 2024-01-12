@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CartLookup, ProductDto, RemoteService, ReviewDto } from '../remote.service';
+import { BidDto, CartLookup, ProductDto, RemoteService, ReviewDto } from '../remote.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CurrentAccountService } from '../current-account.service';
 import { CurrentProductService } from '../current-product.service';
@@ -23,6 +23,8 @@ export class BrowseProductComponent {
   products:ProductDto[];
   currentAccount:CurrentAccountService;
   isClickable:boolean = true;
+  bidPrice:any
+  productId:any
 
   constructor(router:Router, remote: RemoteService, current:CurrentAccountService,currentProduct: CurrentProductService) {
     this.router = router;
@@ -74,6 +76,27 @@ export class BrowseProductComponent {
       next:(data)=>{alert("success")},
       error:(error)=>{alert("Denied: error sending to server")}
     })
-     
+  }
+
+  makeBid(productId : any) {
+    let bid = window.prompt("Enter bid amount");
+    if(bid == "" || bid == null) {
+      alert("Bid cancelled")
+      return
+    }
+    let regex = /(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$/ //Regex for currency validation
+    if(!regex.test(bid)) {
+      alert("Please enter a valid amount and try again.")
+      return
+    }
+    let b = parseInt(bid)
+    let bidDto : BidDto = {
+      accountName : this.currentAccount.accountName,
+      bid : b
+    }
+    this.remote.postBid(productId, bidDto).subscribe({
+      next:(data)=>{alert(`You have posted a $${b} bid for this item.`)},
+      error:(error)=>{alert(error.error)}
+    })
   }
 }

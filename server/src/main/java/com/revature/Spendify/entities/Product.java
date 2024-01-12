@@ -16,7 +16,9 @@ public class Product {
         GROCERIES,
         CLEANING,
         KITCHEN,
-        OFFICE
+        OFFICE,
+        CLOTHES,
+        FOOTWEAR
     }
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -45,6 +47,52 @@ public class Product {
     @Column
     private String description;
 
+    @Column
+    private Boolean biddable;
+
+    @Column
+    private Integer threshold;
+
+    @Column
+    private Double currentBid;
+
+    @ManyToOne
+    @JoinColumn(name = "current_bidder_account_id")
+    @JsonBackReference("bidList")
+    private Account currentBidder;
+
+    public Double getCurrentBid() {
+        return currentBid;
+    }
+
+    public void setCurrentBid(Double currentBid) {
+        this.currentBid = currentBid;
+    }
+
+    public Account getCurrentBidder() {
+        return currentBidder;
+    }
+
+    public void setCurrentBidder(Account currentBidder) {
+        this.currentBidder = currentBidder;
+    }
+
+    public Boolean getBiddable() {
+        return biddable;
+    }
+
+    public void setBiddable(Boolean biddable) {
+        this.biddable = biddable;
+    }
+
+    public Integer getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(Integer threshold) {
+        this.threshold = threshold;
+    }
+
     @OneToMany(mappedBy = "product")
     @JsonManagedReference("reviewList-product")
     private List<Review> reviewList;
@@ -58,6 +106,22 @@ public class Product {
 //    @JsonManagedReference("product")
 //    private List<CartLookup> cartLookupList;
     public Product() {
+    }
+
+    public Product(String productName, double price, Category category, double weight, int stock, double discount, String description, Boolean biddable, Integer threshold, Account currentBidder, List<Review> reviewList, Account account, Double currentBid) {
+        this.productName = productName;
+        this.price = price;
+        this.category = category;
+        this.weight = weight;
+        this.stock = stock;
+        this.discount = discount;
+        this.description = description;
+        this.biddable = biddable;
+        this.threshold = threshold;
+        this.currentBidder = currentBidder;
+        this.reviewList = reviewList;
+        this.account = account;
+        this.currentBid = currentBid;
     }
 
     public Product(String productName, double price, Category category, double weight, int stock, double discount, String description, List<Review> reviewList, Account account) {

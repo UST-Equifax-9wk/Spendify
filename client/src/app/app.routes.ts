@@ -5,11 +5,12 @@ import { DistributorRegisterComponent } from './distributor-register/distributor
 import { LoginComponent } from './login/login.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProductInformationComponent } from './product-information/product-information.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
+import { ProductInformationComponent } from './product-information/product-information.component';
 import { RegisterProductComponent } from './register-product/register-product.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ReviewProductComponent } from './review-product/review-product.component';
+import { SellerReviewComponent } from './seller-review/seller-review.component';
 
 export const routes: Routes = [
     {path: "navbar", component: NavbarComponent},
@@ -22,6 +23,7 @@ export const routes: Routes = [
     {path: "product-information/:productName", component: ProductInformationComponent},
     {path: "review-product", component: ReviewProductComponent},
     {path:"browse-product", component: BrowseProductComponent},
+    {path:"seller-review", component: SellerReviewComponent},
     {path:"payment-methods", component: PaymentMethodsComponent}
 ];
 
