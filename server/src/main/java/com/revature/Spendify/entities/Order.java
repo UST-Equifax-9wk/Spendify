@@ -11,7 +11,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "order_id")
-    private int orderId;
+    private Integer orderId;
 
     @Column(name = "date_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dateTime;
@@ -21,7 +21,7 @@ public class Order {
     @JsonBackReference("cart")
     private Cart cart;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "card_id")
     @JsonBackReference("order")
     private Card card;
@@ -33,23 +33,36 @@ public class Order {
     public Order() {
     }
 
-    public Order(LocalDateTime dateTime, Cart cart, Card card) {
-        this.dateTime = dateTime;
-        this.cart = cart;
-        this.card = card;
-    }
-
-    public Order(int orderId, LocalDateTime dateTime, Cart cart, Card card) {
+    public Order(LocalDateTime now, Integer orderId, LocalDateTime dateTime, Cart cart, Card card, Account account) {
+        this.now = now;
         this.orderId = orderId;
         this.dateTime = dateTime;
         this.cart = cart;
         this.card = card;
+        this.account = account;
     }
-    public int getOrderId() {
+
+    public Order(LocalDateTime now, LocalDateTime dateTime, Cart cart, Card card, Account account) {
+        this.now = now;
+        this.dateTime = dateTime;
+        this.cart = cart;
+        this.card = card;
+        this.account = account;
+    }
+
+    public LocalDateTime getNow() {
+        return now;
+    }
+
+    public void setNow(LocalDateTime now) {
+        this.now = now;
+    }
+
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
