@@ -15,6 +15,13 @@ import { ProductDto, RemoteService } from '../remote.service';
   styleUrl: './manage-inventory.component.css'
 })
 export class ManageInventoryComponent {
+finalizeBid(item: ProductDto) {
+  item.isEditing = true;
+  item.stock = 0;
+  item.biddable = false;
+  this.updateInventory(item);
+
+}
 showReviews(_t13: ProductDto) {
   this.currentProductService.setCurrentProduct(_t13);
   this.router.navigate(['/seller-review']);
@@ -42,16 +49,22 @@ validateField(_t13: ProductDto) {
   ngOnInit(): void {
     // Here you would typically fetch the inventory data from a service
     //console.log(this.currentAccountService.getDistributorAccount());
+    this.remoteService.getHighestBidder(48).subscribe({
+      next: (response) => {
+        console.log(response);
+      }
+    });
     this.remoteService.getAccount(this.currentAccountService.accountName).subscribe({
       next: (response) => {
       let account = JSON.parse(JSON.stringify(response.body ? response.body : []));
-      //console.log(account);
+      console.log(account);
       account.productList.forEach((product: ProductDto) => {
         this.inventory.push(JSON.parse(JSON.stringify(product)));
       })
       this.inventory.forEach((item => item.isEditing = false));
       this.inventory.forEach((item => item.price = Number(item.price)));
       this.inventory.forEach((item => item.stock = Number(item.stock)));
+      //this.inventory.forEach((item => item.biddable = Boolean(item.biddable)));
     }
   });
 }

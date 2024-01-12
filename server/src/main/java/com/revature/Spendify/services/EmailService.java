@@ -45,4 +45,8 @@ public class EmailService {
         System.out.println("before email send");
         emailSender.send(mimeMessage);
     }
+
+    public void sendOrderShippedEmail(Order order) throws MessagingException {
+        
+    }
 }

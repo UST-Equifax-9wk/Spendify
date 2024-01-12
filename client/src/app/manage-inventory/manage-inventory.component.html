@@ -29,6 +29,9 @@
             <button class="review-button" (click)="showReviews(item)">
               Reviews
             </button>
+            <button *ngIf="item.biddable" class="finalize-bid-button" (click)="finalizeBid(item)">
+              Finalize Bid
+            </button>
         </div>
       </td>
     </tr>

@@ -1,16 +1,18 @@
 package com.revature.Spendify.services;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.Spendify.DTOs.BidDto;
 import com.revature.Spendify.entities.Account;
 import com.revature.Spendify.entities.Product;
 import com.revature.Spendify.exceptions.InvalidBidException;
 import com.revature.Spendify.repositories.CartLookupRepository;
 import com.revature.Spendify.repositories.ProductRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import jakarta.transaction.Transactional;
 
 @Service
 @Transactional(Transactional.TxType.REQUIRED)
@@ -30,9 +32,9 @@ public class ProductService {
         Optional<Product> optionalProduct = productRepository.findById(product.getProductId());
         if (optionalProduct.isPresent()) {
             Product oldProduct = optionalProduct.get();
-            oldProduct.setPrice(product.getPrice());
-            oldProduct.setStock(product.getStock());
-            return this.productRepository.save(oldProduct);
+            product.setAccount(oldProduct.getAccount());
+            
+            return this.productRepository.save(product);
         }
         return this.productRepository.save(product);
     }
@@ -70,5 +72,12 @@ public class ProductService {
 
     public List<Product> productListByCategory(Product.Category category) {
         return productRepository.findByCategory(category);
+    }
+
+    public Account getHighestBidder(String productId) {
+        Integer id = Integer.valueOf(productId);
+        Optional<Product> opt = findProductById(id);
+        Product product = opt.get();
+        return product.getCurrentBidder();
     }
 }

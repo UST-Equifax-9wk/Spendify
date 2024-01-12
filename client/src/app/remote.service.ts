@@ -139,6 +139,17 @@ export class RemoteService {
     )
   }
 
+  getHighestBidder(productId : number) {
+    return this.http.get(this.baseUrl + `/products/${productId}/bid`,
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
   getCards(accountName:string){
     return this.http.get(this.baseUrl+"/card/"+accountName,
     {observe:'response',
