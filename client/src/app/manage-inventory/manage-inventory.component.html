@@ -26,6 +26,9 @@
             <button class="edit-button" (click)="updateInventory(this.item)">
               {{ item.isEditing ? 'Save' : 'Edit' }}
             </button>
+            <button class="review-button" (click)="showReviews(item)">
+              Reviews
+            </button>
         </div>
       </td>
     </tr>

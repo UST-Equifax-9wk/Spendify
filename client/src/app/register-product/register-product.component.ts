@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Category, ProductDto, RemoteService, ReviewDto } from '../remote.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CurrentAccountService } from '../current-account.service';
+import { ProductDto, RemoteService, ReviewDto } from '../remote.service';
 
 @Component({
   selector: 'app-register-product',
@@ -35,6 +35,7 @@ export class RegisterProductComponent {
   
   constructor(router : Router, remoteService : RemoteService, currentAccountService : CurrentAccountService) {
     this.router = router
+    this.currentAccountService = currentAccountService
     this.remoteService = remoteService
     this.currentAccountService = currentAccountService;
   }
@@ -60,7 +61,7 @@ export class RegisterProductComponent {
       threshold : this.threshold,
       currentBid : this.currentBid
     }
-    this.remoteService.postNewProduct(this.accountName, productDto).subscribe({
+    this.remoteService.postNewProduct(this.currentAccountService.accountName, productDto).subscribe({
       next: (data) => {
         alert(`${this.productName} has successfully been listed for sale.`)
         console.log(data)

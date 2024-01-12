@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ProductDto, RemoteService, ReviewDto } from './remote.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +61,7 @@ export class CurrentProductService {
     this.stock = product.stock;
     this.discount = product.discount;
     this.description = product.description;
+    this.reviewList = product.reviewList;
     this.threshold = product.threshold;
     this.biddable = product.biddable;
     this.currentBid = product.currentBid;
