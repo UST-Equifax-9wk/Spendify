@@ -3,6 +3,8 @@ package com.revature.Spendify.controllers;
 import com.revature.Spendify.entities.Account;
 import com.revature.Spendify.entities.Password;
 import com.revature.Spendify.services.AccountService;
+import com.revature.Spendify.services.EmailService;
+import jakarta.mail.MessagingException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ public class AuthController {
 
     private AuthenticationManager authenticationManager;
     private AccountService accountService;
+
     @Autowired
     AuthController(AuthenticationManager authenticationManager, AccountService accountService){
         this.authenticationManager=authenticationManager;

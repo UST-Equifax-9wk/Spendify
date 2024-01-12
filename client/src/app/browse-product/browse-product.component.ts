@@ -20,6 +20,7 @@ export class BrowseProductComponent {
   remote:RemoteService;
   currentProduct:CurrentProductService;
   category:string = "";
+  productName:string = "";
   products:ProductDto[];
   currentAccount:CurrentAccountService;
   isClickable:boolean = true;
@@ -35,12 +36,51 @@ export class BrowseProductComponent {
   }
 
   browseProducts() {
-    this.remote.getListOfProducts(this.category).subscribe({
+    if(this.category != "" && this.productName != "") {
+      this.browseProductsbyCategoryAndProductName();
+    }
+    else if(this.category != "") {
+      this.browseProductsByCategory();
+    }
+    else if(this.productName != "") {
+      this.browseProductsByProductName();
+    }
+    else {
+      alert("No selection made!")
+    }
+  }
+
+  browseProductsByCategory() {
+    this.remote.getListOfProductsByCategory(this.category).subscribe({
       next:(data) => {
         this.products = data.body
       },
       error:(error:HttpErrorResponse) => {
-        alert("Could not get list of products")
+        alert("Could not get list of products by category")
+        console.log(error.error)
+      }
+    }) 
+  }
+
+  browseProductsByProductName() {
+    this.remote.getListOfProductsByProductName(this.productName).subscribe({
+      next:(data) => {
+        this.products = data.body
+      },
+      error:(error:HttpErrorResponse) => {
+        alert("Could not get list of products by productName")
+        console.log(error.error)
+      }
+    }) 
+  }
+
+  browseProductsbyCategoryAndProductName() {
+    this.remote.getListOfProductsByCategoryAndProductName(this.category, this.productName).subscribe({
+      next:(data) => {
+        this.products = data.body
+      },
+      error:(error:HttpErrorResponse) => {
+        alert("Could not get list of products by category and productName")
         console.log(error.error)
       }
     }) 

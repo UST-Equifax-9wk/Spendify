@@ -6,9 +6,14 @@
 <option value="PETS">PETS</option>
 <option value="KITCHEN">KITCHEN</option>
 <option value="OFFICE">OFFICE</option>
-</select><button (click)="browseProducts()">Browse Products</button>
+</select>
+<br>
+<label>Product Name: </label>
+<input type = "text" placeholder="search" id="productName" [(ngModel)]="productName">
+<br>
+<button (click)=browseProducts()>Browse Products</button>
 
-<div *ngIf="category">
+<div *ngIf="category || productName">
     <div *ngFor="let product of products">
         <h3 (click)="productInformation(product)" [ngClass]="{'pointer-cursor': isClickable}">
             {{product.productName}}</h3>
