@@ -1,5 +1,13 @@
 <h1>{{currentProduct.productName}}</h1>
-<p>Price: ${{currentProduct.price}}</p>
+
+<div *ngIf="currentProduct.discount != 0; else elseblock">
+<h3>Price: ${{(currentProduct.price * currentProduct.discount) | number: '1.2-2'}}</h3>
+<h5>List Price: <s>${{currentProduct.price}}</s></h5>
+</div>
+<ng-template #elseblock>
+    <h3>Price: ${{currentProduct.price}}</h3>
+</ng-template>
+
 <p>Stock: {{currentProduct.stock}}</p>
 <p>Weight: {{currentProduct.weight}} lbs</p>
 <p>Description: {{currentProduct.description}}</p>
