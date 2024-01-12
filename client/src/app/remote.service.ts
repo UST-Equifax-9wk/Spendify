@@ -222,17 +222,12 @@ export interface ProductDto{
   threshold : number
   biddable : boolean
   currentBid : number
-  // Added these two lists recently
-  //reviewList?: number[]
-  //cartLookupList?: number[]
   reviewList: ReviewDto[]
   cartLookupList: number[]
-  // To allow collapsible attributes
   showMore?:boolean 
 }
 
 export interface ReviewDto{
-  // Changed from "text"
   reviewText : string
   rating : number
   accountName : string

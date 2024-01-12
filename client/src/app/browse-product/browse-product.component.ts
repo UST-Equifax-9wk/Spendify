@@ -21,9 +21,11 @@ export class BrowseProductComponent {
   currentProduct:CurrentProductService;
   category:string = "";
   productName:string = "";
+  // Plan on getting this array populated faster to prevent the lag
   products:ProductDto[];
   currentAccount:CurrentAccountService;
   isClickable:boolean = true;
+  hasBeenClick: boolean = false;
   bidPrice:any
   productId:any
 
@@ -36,6 +38,9 @@ export class BrowseProductComponent {
   }
 
   browseProducts() {
+
+    this.hasBeenClick = true;
+
     if(this.category != "" && this.productName != "") {
       this.browseProductsbyCategoryAndProductName();
     }
@@ -46,7 +51,7 @@ export class BrowseProductComponent {
       this.browseProductsByProductName();
     }
     else {
-      alert("No selection made!")
+      alert("No selections made!")
     }
   }
 
