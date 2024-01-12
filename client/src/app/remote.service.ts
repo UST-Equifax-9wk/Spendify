@@ -118,6 +118,17 @@ export class RemoteService {
     )
   }
 
+  postBid(productId : number, bidDto : BidDto) {
+    return this.http.post(this.baseUrl + `/products/${productId}/bid`, JSON.stringify(bidDto),
+    {
+      observe: 'response',
+      withCredentials: true,
+      headers: new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    })
+  }
+
   addCard(card:Card, name:string){
     return this.http.post(this.baseUrl+"/card/"+name,JSON.stringify(card),
     {observe:'response',
@@ -138,8 +149,6 @@ export class RemoteService {
     )
   }
 }
-
-
 
 
 export interface CartWithProducts{
@@ -172,6 +181,11 @@ export interface UserAccountDto{
   password:string;
 }
 
+export interface BidDto{
+  accountName : string
+  bid : number
+}
+
 export interface ProductDto{
   isEditing?: boolean;
   productId? : number
@@ -182,6 +196,12 @@ export interface ProductDto{
   stock : number
   discount : number
   description : string
+  threshold : number
+  biddable : boolean
+  currentBid : number
+  // Added these two lists recently
+  //reviewList?: number[]
+  //cartLookupList?: number[]
   reviewList: ReviewDto[]
   cartLookupList: number[]
   // To allow collapsible attributes
