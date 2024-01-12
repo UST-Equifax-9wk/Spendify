@@ -1,17 +1,16 @@
 package com.revature.Spendify.services;
-
-import java.util.List;
-import java.util.Optional;
-
+import com.revature.Spendify.DTOs.BidDto;
+import com.revature.Spendify.entities.Account;
+import com.revature.Spendify.entities.Product;
+import com.revature.Spendify.exceptions.InvalidBidException;
+import com.revature.Spendify.repositories.CartLookupRepository;
+import com.revature.Spendify.repositories.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.Spendify.entities.Account;
-import com.revature.Spendify.entities.Product;
-import com.revature.Spendify.repositories.CartLookupRepository;
-import com.revature.Spendify.repositories.ProductRepository;
-
-import jakarta.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(Transactional.TxType.REQUIRED)
@@ -51,6 +50,21 @@ public class ProductService {
     public Product addProductWithAccountName(String accountName, Product product) {
         Account account = accountService.findAccountByName(accountName);
         product.setAccount(account);
+        return createOrUpdateProduct(product);
+    }
+
+    public Product updateBidOnProduct(String id, BidDto bidDto) throws InvalidBidException {
+        Integer productId = Integer.valueOf(id);
+        Optional<Product> opt = findProductById(productId);
+        Product product = opt.get();
+        String bidderUsername = bidDto.getAccountName();
+        Account bidderAccount = accountService.findAccountByName(bidderUsername);
+        Double bidAmount = bidDto.getBid();
+        if(bidderAccount == null) throw new InvalidBidException("User account name does not exist.");
+        if(!product.getBiddable()) throw new InvalidBidException("Item is not biddable.");
+        if(bidAmount <= product.getCurrentBid()) throw new InvalidBidException("Bid is lower or equal to current bid.");
+        product.setCurrentBid(bidAmount);
+        product.setCurrentBidder(bidderAccount);
         return createOrUpdateProduct(product);
     }
 

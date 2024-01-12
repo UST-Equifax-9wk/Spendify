@@ -42,6 +42,10 @@ public class Account {
     @JsonManagedReference("productList")
     private List<Product> productList;
 
+    @OneToMany(mappedBy = "currentBidder")
+    @JsonManagedReference("bidList")
+    private List<Product> bidList;
+
     @OneToMany(mappedBy="account")
     @JsonManagedReference("account-orders")
     private List<Order> orderList;

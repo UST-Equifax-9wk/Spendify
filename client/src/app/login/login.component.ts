@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CurrentAccountService } from '../current-account.service';
+import { Router } from '@angular/router';
 import { Account, RemoteService } from '../remote.service';
 
 @Component({
@@ -13,12 +14,13 @@ import { Account, RemoteService } from '../remote.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  router : Router
   username: string = '';
   password: string = '';
   currentAccount:CurrentAccountService;
-  constructor(private remoteService:RemoteService, currentAccount:CurrentAccountService) {
+  constructor(private remoteService:RemoteService, currentAccount:CurrentAccountService, router:Router) {
     this.currentAccount=currentAccount;
+    this.router=router
   }
 
 signIn(){
@@ -30,6 +32,7 @@ signIn(){
       }
       else this.currentAccount.setUserAccount(account.user, account.accountName)
       alert("Success")
+      this.router.navigate(["browse-product"])
     },
     error: (error: HttpErrorResponse) => {
       alert("Denied: Unknown Error");

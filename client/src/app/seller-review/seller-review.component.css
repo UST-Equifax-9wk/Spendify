@@ -1,0 +1,27 @@
+.review-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.review-rating {
+    color: gold;
+    font-size: 20px;
+}
+
+.review-comment {
+    margin-top: 10px;
+    color: #333;
+}
+
+.star {
+    color: gold;
+    font-size: 20px;
+}

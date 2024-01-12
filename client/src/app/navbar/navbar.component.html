@@ -1,12 +1,17 @@
 
 <div class="navbar">
     <div class="navbar-links">
-        <a routerLink="login" id="login">Login</a>
-        <a routerLink="register-user" id="register-user">Register User</a>
-        <a routerLink="distributor-register" id="register">Distributor Registration</a>
+        <a *ngIf="currentAccount.accountName=='' "routerLink="login" id="login">Login</a>
+        <a *ngIf="currentAccount.accountName=='' "routerLink="register-user" id="register-user">Register User</a>
+        <a *ngIf="currentAccount.accountName=='' "routerLink="distributor-register" id="register">Distributor Registration</a>
+
         <a routerLink="browse-product" id="browse-product">Browse Products</a>
+        <a *ngIf="currentAccount.accountName!=''" routerLink="register-product" id="register-product">List item for sale</a>
         <a *ngIf="currentAccount.accountName!=''" routerLink="payment-methods" id="payment-methods">Payment Methods</a>
         <a *ngIf="currentAccount.accountName!=''" routerLink="cart" id="cart">Cart</a>
+        <a *ngIf="currentAccount.accountName!='' && currentAccount.distributorFlag" routerLink="manage-inventory" id="manage-inventory">Inventory</a>
+        <a *ngIf="currentAccount.accountName!='' && currentAccount.distributorFlag" routerLink="register-product" id="register-product">Post Product</a>
+        
     </div>
 </div>
 <router-outlet></router-outlet>
