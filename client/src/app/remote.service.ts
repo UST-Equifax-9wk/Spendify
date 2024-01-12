@@ -154,7 +154,7 @@ export interface ProductDto{
   discount : number
   description : string
   // Added these two lists recently
-  reviewList: number[]
+  reviewList: ReviewDto[]
   cartLookupList: number[]
   // To allow collapsible attributes
   showMore?:boolean 

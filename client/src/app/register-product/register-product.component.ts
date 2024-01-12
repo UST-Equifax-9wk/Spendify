@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CurrentAccountService } from '../current-account.service';
-import { ProductDto, RemoteService } from '../remote.service';
+import { ProductDto, RemoteService, ReviewDto } from '../remote.service';
 
 @Component({
   selector: 'app-register-product',
@@ -26,7 +26,7 @@ export class RegisterProductComponent {
   stock : any
   discount : any
   description : string = ""
-  reviewList: number[] = []
+  reviewList: ReviewDto[] = []
   cartLookupList: number[] = []
   showMore: boolean = false;
   

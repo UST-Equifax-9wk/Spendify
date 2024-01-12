@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { RemoteService, ReviewDto } from '../remote.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RemoteService, ReviewDto } from '../remote.service';
 
 @Component({
   selector: 'app-review-product',
@@ -16,7 +16,7 @@ export class ReviewProductComponent {
   router : Router
   remoteService : RemoteService
   currentAccountName : string = "chuynh" //TODO: get current user's account name
-  productId : number = 3 //TODO: get product ID of item being reviewed
+  productId : number = 21 //TODO: get product ID of item being reviewed
   rating : any
   reviewText : string = ""
 

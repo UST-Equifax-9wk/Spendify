@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CurrencyFormatDirective } from '../currency-format.directive';
 import { CurrentAccountService } from '../current-account.service';
+import { CurrentProductService } from '../current-product.service';
 import { ProductDto, RemoteService } from '../remote.service';
 
 @Component({
@@ -15,7 +16,8 @@ import { ProductDto, RemoteService } from '../remote.service';
 })
 export class ManageInventoryComponent {
 showReviews(_t13: ProductDto) {
-throw new Error('Method not implemented.');
+  this.currentProductService.setCurrentProduct(_t13);
+  this.router.navigate(['/seller-review']);
 }
 validateField(_t13: ProductDto) {
   if (Number(_t13.price) < 0) {
@@ -25,13 +27,14 @@ validateField(_t13: ProductDto) {
     _t13.stock = 0;
   }
 }
-
+  currentProductService: CurrentProductService;
   inventory: ProductDto[];
   remoteService : RemoteService
   currentAccountService: CurrentAccountService;
 
-  constructor(currentAccountService: CurrentAccountService, private router : Router, remoteService : RemoteService) {
+  constructor(currentAccountService: CurrentAccountService, private router : Router, remoteService : RemoteService, currentProductService: CurrentProductService) {
     this.currentAccountService = currentAccountService;
+    this.currentProductService = currentProductService;
     this.remoteService = remoteService;
     this.inventory = [];
    }

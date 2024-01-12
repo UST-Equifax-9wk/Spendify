@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductDto } from './remote.service';
+import { ProductDto, ReviewDto } from './remote.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class CurrentProductService {
   stock: number;
   discount: number;
   description: string;
-  reviewList: number[];
+  reviewList: ReviewDto[];
   cartLookupList: number[];
   showMore: boolean;
 
@@ -38,6 +38,7 @@ export class CurrentProductService {
     this.stock = product.stock;
     this.discount = product.discount;
     this.description = product.description;
+    this.reviewList = product.reviewList;
   }
 
   getCurrentProduct():ProductDto {

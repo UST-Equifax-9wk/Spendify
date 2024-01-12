@@ -9,6 +9,7 @@ import { ProductInformationComponent } from './product-information/product-infor
 import { RegisterProductComponent } from './register-product/register-product.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ReviewProductComponent } from './review-product/review-product.component';
+import { SellerReviewComponent } from './seller-review/seller-review.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "product-information/:productName", component: ProductInformationComponent},
     {path: "review-product", component: ReviewProductComponent},
-    {path:"browse-product", component: BrowseProductComponent}
+    {path:"browse-product", component: BrowseProductComponent},
+    {path:"seller-review", component: SellerReviewComponent},
 ];
 

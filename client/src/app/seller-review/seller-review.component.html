@@ -1,1 +1,10 @@
-<p>seller-review works!</p>
+<h2>Reviews for the Item</h2>
+<ul class="review-list">
+    <li *ngFor="let review of reviews" class="review-item">
+        <div class="review-rating">
+            <span *ngFor="let star of [].constructor(review.rating); let i = index" class="star">&#9733;</span>
+        </div>
+        <p class="review-comment">Comment: {{ review.reviewText }}</p>
+    </li>
+    <!-- Add more review items here -->
+</ul>
