@@ -102,9 +102,6 @@ public class Product {
     @JsonBackReference("productList")
     private Account account;
 
-//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-//    @JsonManagedReference("product")
-//    private List<CartLookup> cartLookupList;
     public Product() {
     }
 

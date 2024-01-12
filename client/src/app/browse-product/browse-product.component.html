@@ -13,11 +13,17 @@
 <br>
 <button (click)=browseProducts()>Browse Products</button>
 
-<div *ngIf="category || productName">
+<div *ngIf="(category || productName) && hasBeenClick">
+    <div *ngIf="products.length != 0; else elseblock">
     <div *ngFor="let product of products">
         <h3 (click)="productInformation(product)" [ngClass]="{'pointer-cursor': isClickable}">
             {{product.productName}}</h3>
-        <p>$ {{product.price}} USD</p>
+        <div *ngIf="product.discount != 0; else nonDiscountPrice">
+            <p>Price: ${{(product.price * product.discount) | number: '1.2-2'}}</p>
+        </div>
+        <ng-template #nonDiscountPrice>
+            <p>Price: ${{product.price}}</p>
+        </ng-template>
         <p> Stock: {{product.stock}}</p>
         <div *ngIf="product.biddable">
             <p>Current bid price: ${{product.currentBid}}</p>
@@ -33,6 +39,7 @@
             <p> Weight: {{product.weight}} lbs</p>
             <p> Description: {{product.description}}</p>
         </ng-container>
-
+        </div>
     </div>
+    <ng-template #elseblock>No results...</ng-template>
 </div>
