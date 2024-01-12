@@ -20,11 +20,7 @@ label{
 .input-error{
     color: rgba(255, 0, 0, 0.616);
 }
-#title{
-    text-align: center;
-    font-size: 60px;
-    color:rgb(79, 189, 79);
-}
+
 .navbar-link{
     font-size: 20px;
     background-color: transparent;
@@ -68,3 +64,8 @@ body {
     margin: 0;
     line-height: normal;
   }
+#logo{
+    text-align: center;
+    position:relative;
+    top: 50px;
+}
