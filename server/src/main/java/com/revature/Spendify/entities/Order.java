@@ -76,4 +76,12 @@ public class Order {
     public void setCard(Card card) {
         this.card = card;
     }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 }
