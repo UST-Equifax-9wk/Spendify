@@ -9,8 +9,8 @@
         <a *ngIf="currentAccount.accountName!=''" routerLink="register-product" id="register-product">List item for sale</a>
         <a *ngIf="currentAccount.accountName!=''" routerLink="payment-methods" id="payment-methods">Payment Methods</a>
         <a *ngIf="currentAccount.accountName!=''" routerLink="cart" id="cart">Cart</a>
-        <a *ngIf="currentAccount.accountName!='' && currentAccount.distributorFlag" routerLink="manage-inventory" id="manage-inventory">Inventory</a>
-        <a *ngIf="currentAccount.accountName!='' && currentAccount.distributorFlag" routerLink="register-product" id="register-product">Post Product</a>
+        <a *ngIf="currentAccount.accountName!=''" routerLink="manage-inventory" id="manage-inventory">Inventory</a>
+        <a *ngIf="currentAccount.accountName!=''" routerLink="register-product" id="register-product">Post Product</a>
         
     </div>
 </div>
