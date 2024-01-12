@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category, ProductDto, RemoteService } from '../remote.service';
+import { Category, ProductDto, RemoteService, ReviewDto } from '../remote.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -27,7 +27,7 @@ export class RegisterProductComponent {
   stock : any
   discount : any
   description : string = ""
-  reviewList: number[] = []
+  reviewList: ReviewDto[] = []
   cartLookupList: number[] = []
   showMore: boolean = false;
   biddable : boolean = false;

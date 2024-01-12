@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
+import { CurrentDistributorService } from './current-distributor.service';
 import { CurrentUserService } from './currentuser.service';
-import { Account, User, UserAccountDto } from './remote.service';
-import { DistributorDto } from './distributor-service.service';
+import { DistributorDto, NewDistributorDto } from './distributor.service';
+import { User, UserAccountDto } from './remote.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurrentAccountService {
   currentUser:CurrentUserService;
+  currentDistributor:CurrentDistributorService;
   accountName="";
   distributorFlag=false;
-  currentDistributor:DistributorDto={
-    name: '',
-    email: ''
-  }
-  constructor(user:CurrentUserService) {
+  constructor(user:CurrentUserService, distributor:CurrentDistributorService) {
     this.currentUser=user;
+    this.currentDistributor=distributor;
 
    }
 
@@ -36,15 +36,19 @@ export class CurrentAccountService {
 
     
    }
-   setDistributorAccount(account:Account){
-    this.currentDistributor.name=account.distributor.name;
-    this.currentDistributor.email=account.distributor.email;
+   setDistributorAccount(distributor:DistributorDto, name:string){
+    this.currentDistributor.setCurrentDistributor(distributor);
+    this.accountName=name;
     this.distributorFlag=true;
-    this.accountName=account.accountName;
-    console.log("Current distributor set to: ",this.accountName)
-
-  }
-    getDistributorAccount(){
-      return this.currentDistributor;
+    console.log("Current distributor set to: ",this.currentDistributor.getCurrentDistributor())
     }
+  getDistributorAccount():NewDistributorDto{
+    let dto:NewDistributorDto={
+      distributor: this.currentDistributor.getCurrentDistributor(),
+      accountName: this.accountName,
+      password: "Hidden"
+    }
+    return dto;
+    
+  }
 }

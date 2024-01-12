@@ -1,13 +1,10 @@
 package com.revature.Spendify.services;
-
 import com.revature.Spendify.DTOs.BidDto;
 import com.revature.Spendify.entities.Account;
-import com.revature.Spendify.entities.CartLookup;
 import com.revature.Spendify.entities.Product;
 import com.revature.Spendify.exceptions.InvalidBidException;
 import com.revature.Spendify.repositories.CartLookupRepository;
 import com.revature.Spendify.repositories.ProductRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +27,13 @@ public class ProductService {
     }
 
     public Product createOrUpdateProduct(Product product) {
+        Optional<Product> optionalProduct = productRepository.findById(product.getProductId());
+        if (optionalProduct.isPresent()) {
+            Product oldProduct = optionalProduct.get();
+            oldProduct.setPrice(product.getPrice());
+            oldProduct.setStock(product.getStock());
+            return this.productRepository.save(oldProduct);
+        }
         return this.productRepository.save(product);
     }
 
